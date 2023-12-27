@@ -7,7 +7,7 @@ namespace MyAPI.Controllers;
 public class TestingController : Controller
 {
     [HttpGet]
-    async Task<string> GetTest()
+    public async Task<string> GetTest()
     {
         return "Ok";
     }
