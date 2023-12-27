@@ -16,7 +16,7 @@ public class DataContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "Data", "database.db");
-        optionsBuilder.UseSqlite(webbasedconnectionstring);
+        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
