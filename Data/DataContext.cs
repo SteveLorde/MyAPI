@@ -15,6 +15,8 @@ public class DataContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        var databasefolder = Path.Combine(_hostenv.ContentRootPath, "Data");
+        Directory.CreateDirectory(databasefolder);
         var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "Data", "database.db");
         optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
     }
