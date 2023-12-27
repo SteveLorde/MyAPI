@@ -6,7 +6,7 @@ namespace MyAPI.Controllers;
 [Route("Testing")]
 public class TestingController : Controller
 {
-    [HttpGet]
+    [HttpGet("GetTest")]
     public async Task<string> GetTest()
     {
         return "Ok";
