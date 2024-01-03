@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using MyAPI.Data;
 using MyAPI.ForumApp.Data;
 using MyAPI.Services.AutoMapper;
+using MyAPI.Services.JWT;
+using MyAPI.Services.PasswordHash;
 using MyAPI.Services.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +30,8 @@ builder.Services.AddDbContext<ForumAppDbContext>();
 builder.Services.AddAutoMapper(typeof(AutoProfile));
 builder.Services.AddAutoMapper(typeof(ForumAppProfile));
 builder.Services.AddScoped<Startup>();
+builder.Services.AddScoped<IPasswordHash, PasswordHash>();
+builder.Services.AddScoped<IJWT, JWT>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(opt =>

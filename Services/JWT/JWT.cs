@@ -10,13 +10,13 @@ using MyAPI.ForumApp.Services.Authentication.Model;
 
 namespace MyAPI.Services.JWT;
 
-class Jwt : IJWT
+class JWT : IJWT
 {
     private IConfiguration _config;
 
     private string jwtseckey;
 
-    public Jwt(IConfiguration config)
+    public JWT(IConfiguration config)
     {
         _config = config;
         jwtseckey = _config["secretkey"];
