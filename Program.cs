@@ -8,6 +8,7 @@ using MyAPI.Services.AutoMapper;
 using MyAPI.Services.JWT;
 using MyAPI.Services.PasswordHash;
 using MyAPI.Services.Startup;
+using IStartup = MyAPI.Services.Startup.IStartup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,23 +26,21 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
 });
-/*
- * re-vising DataContext use for later
- * builder.Services.AddDbContext<DataContext>();
- */
+builder.Services.AddDbContext<DataContext>();
 builder.Services.AddDbContext<ForumAppDbContext>();
 builder.Services.AddAutoMapper(typeof(AutoProfile));
 builder.Services.AddAutoMapper(typeof(ForumAppProfile));
-builder.Services.AddScoped<Startup>();
+builder.Services.AddScoped<IStartup,Startup>();
+builder.Services.AddScoped<IStorageStartup,StorageStartup>();
 builder.Services.AddScoped<IPasswordHash, PasswordHash>();
 builder.Services.AddScoped<IJWT, JWT>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(opt =>
 {
-    opt.AddPolicy(name: "CorsPolicy", builder =>
+    opt.AddPolicy(name: "CorsPolicy", policyBuilder =>
     {
-        builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+        policyBuilder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
     });
 });
 
@@ -49,7 +48,7 @@ var app = builder.Build();
 
 var servicescope = app.Services.CreateScope();
 var services = servicescope.ServiceProvider;
-var startupservice = services.GetRequiredService<Startup>();
+var startupservice = services.GetRequiredService<IStartup>();
 startupservice.ExecuteServices();
 
 // Configure the HTTP request pipeline.

@@ -16,7 +16,8 @@ public class ForumAppDbContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        CreateDatabaseFolder(optionsBuilder);
+        var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "ForumApp" ,"Data", "database.db");
+        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,14 +25,6 @@ public class ForumAppDbContext : DbContext
         
     }
 
-    public void CreateDatabaseFolder(DbContextOptionsBuilder optionsBuilder)
-    {
-        var databasefolder = Path.Combine(_hostenv.ContentRootPath, "Data");
-        Directory.CreateDirectory(databasefolder);
-        var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "ForumApp" ,"Data", "database.db");
-        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
-    }
-    
     //Forum App Tables
     public DbSet<Category> forumapp_categories { get; set; }
     public DbSet<SubCategory> forumapp_subcategories { get; set; }
