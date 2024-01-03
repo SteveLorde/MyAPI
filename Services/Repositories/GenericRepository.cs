@@ -44,6 +44,7 @@ class GenericRepository<T> : IGenericRepository<T> where T : class, new()
 
     public async Task<bool> Add(TDTO entitydto)
     {
+        entitydto.date = DateTime.Now;
         T newentity = new T();
         newentity = _mapper.Map<T>(entitydto);
         await _db.Set<T>().AddAsync(newentity);

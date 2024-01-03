@@ -1,29 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyAPI.ForumApp.Data.Models;
+using Thread = System.Threading.Thread;
 
 namespace MyAPI.Data;
 
 public class DataContext : DbContext
 {
     
-    private readonly IConfiguration _configenv;
-    private readonly IWebHostEnvironment _hostenv;
 
-    public DataContext(IConfiguration configenv, IWebHostEnvironment hostenv)
-    {
-        _configenv = configenv;
-        _hostenv = hostenv;
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var databasefolder = Path.Combine(_hostenv.ContentRootPath, "Data");
-        Directory.CreateDirectory(databasefolder);
-        var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "Data", "database.db");
-        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        
-    }
 
 }

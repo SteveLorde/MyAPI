@@ -1,6 +1,9 @@
+using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
 using MyAPI.Data;
+using MyAPI.ForumApp.Data;
 using MyAPI.Services.AutoMapper;
 using MyAPI.Services.Startup;
 
@@ -8,8 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 //builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddAuthentication().AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateLifetime = true,
+        ValidateAudience = false,
+        ValidIssuer = "",
+        ValidateIssuer = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
+    };
+});
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<ForumAppDbContext>();
 builder.Services.AddAutoMapper(typeof(AutoProfile));
+builder.Services.AddAutoMapper(typeof(ForumAppProfile));
 builder.Services.AddScoped<Startup>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
