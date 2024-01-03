@@ -25,7 +25,10 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
 });
-builder.Services.AddDbContext<DataContext>();
+/*
+ * re-vising DataContext use for later
+ * builder.Services.AddDbContext<DataContext>();
+ */
 builder.Services.AddDbContext<ForumAppDbContext>();
 builder.Services.AddAutoMapper(typeof(AutoProfile));
 builder.Services.AddAutoMapper(typeof(ForumAppProfile));
