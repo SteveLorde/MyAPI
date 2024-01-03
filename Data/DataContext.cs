@@ -23,12 +23,4 @@ public class DataContext : DbContext
         
     }
     
-    /*
-    public void CreateDatabaseFolder()
-    {
-        var databasefolder = Path.Combine(_hostenv.ContentRootPath, "Data");
-        Directory.CreateDirectory(databasefolder);
-    }
-    */
-    
 }

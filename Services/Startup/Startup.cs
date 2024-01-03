@@ -28,5 +28,10 @@ public class Startup : IStartup
         dbservice.Database.Migrate();
         */
         
+        var scopedb = _serviceprovider.CreateScope();
+        var servicescopedb = scopedb.ServiceProvider;
+        var forumdbservice = servicescopedb.GetRequiredService<ForumAppDbContext>();
+        forumdbservice.Database.Migrate();
+        
     }
 }

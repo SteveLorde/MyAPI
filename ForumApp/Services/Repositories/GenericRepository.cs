@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using MyAPI.Data;
 using MyAPI.Data.DTOs;
 using MyAPI.ForumApp.Data;
 
@@ -20,7 +19,7 @@ class GenericRepository<T> : IGenericRepository<T> where T : class, new()
         _mapper = mapper;
         _hostenv = hostingEnvironment;
     }
-    
+
     public async Task<List<T>> GetAll(params Expression<Func<T, object>>[] includes)
     { 
         IQueryable<T> query = _db.Set<T>().AsQueryable();

@@ -2,10 +2,6 @@
 
 public class Thread
 {
-    public Thread()
-    {
-        numofposts = posts.Count;
-    }
     public Guid Id { get; set; }
     public string title { get; set; }
     public DateTime date { get; set; }

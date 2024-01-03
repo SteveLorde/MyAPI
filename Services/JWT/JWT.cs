@@ -15,15 +15,22 @@ class JWT : IJWT
     private IConfiguration _config;
 
     private string jwtseckey;
+    private readonly IWebHostEnvironment _webenv;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    
 
-    public JWT(IConfiguration config)
+    public JWT(IConfiguration config, IHttpContextAccessor httpContextAccessor)
     {
         _config = config;
         jwtseckey = _config["secretkey"];
+        _httpContextAccessor = httpContextAccessor;
+
     }
 
     public string CreateToken(User user)
     {
+        string baseUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}{_httpContextAccessor.HttpContext.Request.PathBase}";
+
         List<Claim> claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.username),
@@ -33,7 +40,7 @@ class JWT : IJWT
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
         var tokendata = new JwtSecurityToken(
             claims: claims,
-            issuer: "",
+            issuer: $"{baseUrl}",
             audience: "",
             expires: DateTime.Now.AddDays(2),
             signingCredentials: cred

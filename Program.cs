@@ -26,14 +26,9 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
 });
-builder.Services.AddDbContext<DataContext>();
-builder.Services.AddDbContext<ForumAppDbContext>();
 builder.Services.AddAutoMapper(typeof(AutoProfile));
 builder.Services.AddAutoMapper(typeof(ForumAppProfile));
-builder.Services.AddScoped<IStartup,Startup>();
-builder.Services.AddScoped<IStorageStartup,StorageStartup>();
-builder.Services.AddScoped<IPasswordHash, PasswordHash>();
-builder.Services.AddScoped<IJWT, JWT>();
+builder.Services.AddServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(opt =>
