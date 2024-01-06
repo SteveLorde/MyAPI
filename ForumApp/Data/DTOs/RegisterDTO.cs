@@ -1,6 +1,6 @@
 ﻿namespace MyAPI.ForumApp.Data.DTOs;
 
-public class AuthRequestDTO
+public class RegisterDTO
 {
     public string username { get; set; }
     public string password { get; set; }

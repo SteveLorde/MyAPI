@@ -6,7 +6,7 @@ namespace MyAPI.Services.PasswordHash;
 
 class PasswordHash : IPasswordHash
 {
-    public async Task<Hash> CreatePassword(string password)
+    public string CreateHashedPassword(string password)
     {
         string salt = GenerateSalt();
         string hashedpassword = GenerateHashedPassword(password, salt);
@@ -15,10 +15,18 @@ class PasswordHash : IPasswordHash
             hash = hashedpassword,
             salt = salt
         };
-        return hash;
+        //create a string of pattern salt.hashedpassword
+        string hashedpass = salt + "." + hashedpassword;
+        return hashedpass;
     }
+
+    public string HashPasswordWithGivenSalt(string password, string salt)
+    {
+        return GenerateHashedPassword(password, salt);
+    }
+
     
-    private static string GenerateSalt()
+    private string GenerateSalt()
     {
         byte[] salt = new byte[16];
         var rng = new RNGCryptoServiceProvider();
@@ -26,6 +34,7 @@ class PasswordHash : IPasswordHash
         string base64salt = Convert.ToBase64String(salt);
         return base64salt;
     }
+    
     
     private string GenerateHashedPassword(string password, string salt)
     {

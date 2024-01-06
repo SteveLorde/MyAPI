@@ -2,9 +2,8 @@
 
 namespace MyAPI.ForumApp.Data.DTOs;
 
-public interface PostDTO : TDTO
+public class PostDTO : BaseDTO
 {
-    public Guid Id { get; set; }
     public string body { get; set; }
     public Guid UserId { get; set; }
     public Guid ThreadId { get; set; }

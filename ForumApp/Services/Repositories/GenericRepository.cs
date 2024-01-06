@@ -3,10 +3,11 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.Data.DTOs;
 using MyAPI.ForumApp.Data;
+using MyAPI.ForumApp.Data.DTOs;
 
 namespace MyAPI.ForumApp.Services.Repositories;
 
-class GenericRepository<T> : IGenericRepository<T> where T : class, new()
+class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity ,new()
 {
     
     public ForumAppDbContext _db;
@@ -20,13 +21,14 @@ class GenericRepository<T> : IGenericRepository<T> where T : class, new()
         _hostenv = hostingEnvironment;
     }
 
-    public async Task<List<T>> GetAll(params Expression<Func<T, object>>[] includes)
+    public async Task<List<T>> GetAll<TKey>(Expression<Func<T, TKey>> keySelector, params Expression<Func<T, object>>[] includes)
     { 
         IQueryable<T> query = _db.Set<T>().AsQueryable();
         
         if (includes != null)
         {
             query = includes.Aggregate(query, (current, include) => current.Include(include));
+            query = query.OrderBy(keySelector);
         }
 
         return await query.ToListAsync();
@@ -42,11 +44,11 @@ class GenericRepository<T> : IGenericRepository<T> where T : class, new()
         return await query.FirstAsync(entity => EF.Property<Guid>(entity, "Id") == Guid.Parse(entityid));
     }
 
-    public async Task<bool> Add(TDTO entitydto)
+    public async Task<bool> Add(BaseDTO entitydto)
     {
-        entitydto.date = DateTime.Now;
         T newentity = new T();
         newentity = _mapper.Map<T>(entitydto);
+        newentity.date = DateTime.Now;
         await _db.Set<T>().AddAsync(newentity);
         await _db.SaveChangesAsync();
         return true;
@@ -59,9 +61,9 @@ class GenericRepository<T> : IGenericRepository<T> where T : class, new()
         return true;
     }
     
-    public async Task<bool> Update(TDTO entitydao)
+    public async Task<bool> Update(BaseDTO entitydao)
     {
-        var selectedentity = await _db.Set<T>().FindAsync(Guid.Parse(entitydao.id));
+        var selectedentity = await _db.Set<T>().FindAsync(Guid.Parse(entitydao.Id));
         selectedentity = _mapper.Map<T>(entitydao);
         await _db.SaveChangesAsync();
         return true;

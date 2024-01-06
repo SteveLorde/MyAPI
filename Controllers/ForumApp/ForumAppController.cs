@@ -30,46 +30,32 @@ public class ForumAppController : ControllerBase
         _authservice = authservice;
     }
     
-    [HttpGet("GetThread/{threadid}")]
-    public async Task<Thread?> GetThread(string threadid)
-    {
-        return await _threadsservice.Get(threadid, thread => thread.posts, thread => thread.userowner);
-    }
+    //Categories
+    //-----------------------
     
-    [HttpGet("getsubcategorythreads/{subcategoryid}")]
-    public async Task<List<List<Thread>>> GetSubCategoryThreads(string subcategoryid)
-    {
-        return await _db.forumapp_subcategories.Where(subcat => subcat.Id == Guid.Parse(subcategoryid)).Select(subcat => subcat.threads).ToListAsync();
-    }
-    
-    [HttpGet("getsubcategories")]
+    [HttpGet("categories/getcategories")]
     public async Task<List<Category>> GetSubCategories()
     {
         return await _db.forumapp_categories.Include(category => category.subcategories).ToListAsync();
     }
-
-    [HttpGet("getuser/{userid}")]
-    public async Task<User> GetUserInfo(string userid)
-    {
-        return await _db.forumapp_users.FirstAsync(user => user.Id == Guid.Parse(userid));
-    }
     
+    //Authentcation
     //-----------------------
     
-    [HttpPost("login")]
-    public async Task<string> Login(AuthRequestDTO loginreq)
+    [HttpPost("authentication/login")]
+    public async Task<string> Login(LoginDTO loginreq)
     {
         return await _authservice.Login(loginreq);
     }
     
-    [HttpPost("register")]
-    public async Task<bool> Register(AuthRequestDTO registerreq)
+    [HttpPost("authentication/register")]
+    public async Task<bool> Register(RegisterDTO registerreq)
     {
         return await _authservice.Register(registerreq);
     }
     
     [Authorize]
-    [HttpGet("getuserinfo")]
+    [HttpGet("getactiveuserinfo")]
     public async Task<User> GetActiveUserInfo()
     {
         //VALIDATE TOKEN AUTOMATICALLY
@@ -77,20 +63,61 @@ public class ForumAppController : ControllerBase
         return await _authservice.GetUser(userid);
     }
     
+    //Threads
     //-------------------------
-    [HttpPost("AddPost")]
-    public async Task<bool> AddPost(PostDTO newpost)
+    
+    [HttpGet("threads/getthread/{threadid}")]
+    public async Task<Thread?> GetThread(string threadid)
     {
-        return await _postsservice.Add(newpost);
+        return await _threadsservice.Get(threadid, thread => thread.posts, thread => thread.userowner);
     }
     
-    [HttpPost("AddThread")]
+    [HttpGet("threads/getsubcategorythreads/{subcategoryid}")]
+    public async Task<List<List<Thread>>> GetSubCategoryThreads(string subcategoryid)
+    {
+        return await _db.forumapp_subcategories.Where(subcat => subcat.Id == Guid.Parse(subcategoryid)).Select(subcat => subcat.threads).ToListAsync();
+    }
+    
+    [Authorize]
+    [HttpPost("threads/AddThread")]
     public async Task<bool> AddPost(ThreadDTO newthread)
     {
-        return await _threadsservice.Add(newthread);
+        string userid = HttpContext.User.FindFirst("userid").Value;
+        var check = _db.forumapp_users.FindAsync(Guid.Parse(userid)).IsCompletedSuccessfully;
+        if (check)
+        {
+            return await _threadsservice.Add(newthread);
+        }
+        else
+        {
+            return false;
+        }
     }
     
+    //Posts
+    //-------------------------
+    [Authorize]
+    [HttpPost("posts/AddPost")]
+    public async Task<bool> AddPost(PostDTO newpost)
+    {
+        string userid = HttpContext.User.FindFirst("userid").Value;
+        var check = _db.forumapp_users.FindAsync(Guid.Parse(userid)).IsCompletedSuccessfully;
+        if (check)
+        {
+            return await _postsservice.Add(newpost);
+        }
+        else
+        {
+            return false;
+        }
+    }
     
-    
+    //Users
+    //-----------------------
+    [HttpGet("users/getuser/{userid}")]
+    public async Task<User> GetUserInfo(string userid)
+    {
+        return await _db.forumapp_users.FirstAsync(user => user.Id == Guid.Parse(userid));
+    }
     
 }

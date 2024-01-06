@@ -1,6 +1,8 @@
-﻿namespace MyAPI.ForumApp.Data.Models;
+﻿using MyAPI.ForumApp.Services.Repositories;
 
-public class Post
+namespace MyAPI.ForumApp.Data.Models;
+
+public class Post : IEntity
 {
     public Guid Id { get; set; }
     public string body { get; set; }

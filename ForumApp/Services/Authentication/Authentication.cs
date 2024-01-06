@@ -5,6 +5,7 @@ using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Authentication.Model;
+using MyAPI.ForumApp.Services.Repositories.Users;
 using MyAPI.Services.JWT;
 using MyAPI.Services.PasswordHash;
 
@@ -16,51 +17,66 @@ class Authentication : IAuthentication
     private readonly IJWT _jwtservice;
     private readonly IMapper _mapper;
     private readonly IPasswordHash _hashservice;
+    private readonly IUsersRepository _usersrepo;
 
-    public Authentication(ForumAppDbContext db, IPasswordHash hashservice,IJWT jwtservice, IMapper mapper)
+    public Authentication(ForumAppDbContext db, IPasswordHash hashservice,IJWT jwtservice, IMapper mapper, IUsersRepository usersrepo)
     {
         _db = db;
         _jwtservice = jwtservice;
         _mapper = mapper;
         _hashservice = hashservice;
+        _usersrepo = usersrepo;
     }
     
-    public async Task<string> Login(AuthRequestDTO loginreq)
+    public async Task<string> Login(LoginDTO loginreq)
     {
-        string token = " ";
+        string token = "token x";
         //1st, check username in database
         bool checkuser = await _db.forumapp_users.AnyAsync(x => x.username == loginreq.username);
-        if (checkuser)
+        if (!checkuser)
+        {
+            return "user not found";
+        }
+        else
         {
             var loginuser = await _db.forumapp_users.FirstAsync(x => x.username == loginreq.username);
             //2nd verify password
-            bool checkpassword = await VerifyPassword(loginreq.password,loginuser.hashedpassword) ;
+            bool checkpassword = await VerifyPassword(loginreq.password, loginuser.hashedpassword) ;
             if (checkpassword)
             {
                 token  = _jwtservice.CreateToken(loginuser);
+                return token;
+            }
+            else
+            {
+                return "wrong password";
             }
         }
-        return token;
     }
 
-    public async Task<bool> Register(AuthRequestDTO registerreq)
+    public async Task<bool> Register(RegisterDTO registerreq)
     {
         //map a new userdto from authrequest
         UserDTO usertohash = _mapper.Map<UserDTO>(registerreq);
         //1-hash password
-        Hash hashedpassword = await _hashservice.CreatePassword(usertohash.password);
+        string hashedpassword =  _hashservice.CreateHashedPassword(usertohash.password);
         //2-create new user
-        User newuser = _mapper.Map<User>(registerreq);
+        User newuser = new User { Id = Guid.NewGuid(), username = usertohash.username, date = DateTime.Now, hashedpassword = hashedpassword, usertype = "user", email = usertohash.email, profileimage = usertohash.profilepicfilename };
         //3-add to database
-        await _db.forumapp_users.AddAsync(newuser);
-        return true;
+        return await _usersrepo.AddNewUser(newuser);
     }
 
-    private async Task<bool> VerifyPassword(string password, string hashedpassword)
+    private async Task<bool> VerifyPassword(string passwordtoverify, string hashedpassword)
     {
-        var hash = await _hashservice.CreatePassword(password);
-        var passwordtoverify = hash.hash;
-        if (passwordtoverify == hashedpassword)
+        //1-extract salt from database user hashedpassword, pass string pattern SALT.HASHEDPASSWORD
+        var extractedsavedpassword = hashedpassword.Split(".");
+        var extractedsalt = extractedsavedpassword[0];
+        var extractedhashedpass = extractedsavedpassword[1];
+        //2-generate hashed password with given salt
+        var passwordtotest = _hashservice.HashPasswordWithGivenSalt(passwordtoverify, extractedsalt);
+        Console.WriteLine("hashed password to test is: " + passwordtotest + "  VERSUS  " + extractedhashedpass);
+        //3-compare
+        if (passwordtotest == extractedhashedpass)
         {
             return true;
         }
@@ -68,7 +84,6 @@ class Authentication : IAuthentication
         {
             return false;
         }
-        
     }
 
     public async Task<User> GetUser(string userid)

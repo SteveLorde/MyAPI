@@ -5,7 +5,7 @@ namespace MyAPI.ForumApp.Services.Authentication;
 
 public interface IAuthentication
 {
-    public Task<string> Login(AuthRequestDTO loginreq);
-    public Task<bool> Register(AuthRequestDTO registerreq);
+    public Task<string> Login(LoginDTO loginreq);
+    public Task<bool> Register(RegisterDTO registerreq);
     public Task<User> GetUser(string userid);
 }

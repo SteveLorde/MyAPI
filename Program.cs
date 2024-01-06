@@ -4,6 +4,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using MyAPI.Data;
 using MyAPI.ForumApp.Data;
+using MyAPI.Services;
 using MyAPI.Services.AutoMapper;
 using MyAPI.Services.JWT;
 using MyAPI.Services.PasswordHash;

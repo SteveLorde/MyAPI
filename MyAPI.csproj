@@ -27,5 +27,11 @@
       <Folder Include="Data\Models\" />
       <Folder Include="ForumApp\Data\Migrations\" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="Storage\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>

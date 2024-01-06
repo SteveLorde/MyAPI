@@ -4,5 +4,6 @@ namespace MyAPI.Services.PasswordHash;
 
 public interface IPasswordHash
 {
-    public Task<Hash> CreatePassword(string password);
+    public string CreateHashedPassword(string password);
+    public string HashPasswordWithGivenSalt(string password, string salt);
 }

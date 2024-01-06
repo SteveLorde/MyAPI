@@ -1,6 +1,9 @@
-﻿namespace MyAPI.ForumApp.Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using MyAPI.ForumApp.Services.Repositories;
 
-public class Thread
+namespace MyAPI.ForumApp.Data.Models;
+
+public class Thread : IEntity
 {
     public Guid Id { get; set; }
     public string title { get; set; }
@@ -11,6 +14,8 @@ public class Thread
     public User userowner { get; set; }
     public Guid SubCategoryId { get; set; }
     public SubCategory subcategory { get; set; }
+    [NotMapped]
+    public Post lastpost { get; set; }
 
 
 }
