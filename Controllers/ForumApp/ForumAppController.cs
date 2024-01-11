@@ -34,7 +34,7 @@ public class ForumAppController : ControllerBase
     //-----------------------
     
     [HttpGet("categories/getcategories")]
-    public async Task<List<Category>> GetSubCategories()
+    public async Task<List<Category>> GetCategories()
     {
         return await _db.forumapp_categories.Include(category => category.subcategories).ToListAsync();
     }
@@ -73,9 +73,23 @@ public class ForumAppController : ControllerBase
     }
     
     [HttpGet("threads/getsubcategorythreads/{subcategoryid}")]
-    public async Task<List<List<Thread>>> GetSubCategoryThreads(string subcategoryid)
+    public async Task<List<ThreadDTO>> GetSubCategoryThreads(string subcategoryid)
     {
-        return await _db.forumapp_subcategories.Where(subcat => subcat.Id == Guid.Parse(subcategoryid)).Select(subcat => subcat.threads).ToListAsync();
+        var queriedthreads = await _db.forumapp_subcategories.Where(subcat => subcat.Id == Guid.Parse(subcategoryid)).SelectMany(subcat => subcat.threads).Include(t => t.posts).ToListAsync();
+        List<ThreadDTO> subcategorythreads = new List<ThreadDTO>();
+        foreach (var thread in queriedthreads)
+        {
+            ThreadDTO threaddto = new ThreadDTO
+            {
+                 Id = thread.Id.ToString(),
+                 title = thread.title,
+                 lastpost = thread.posts.Last(),
+                 date = thread.date.ToString(),
+                 numofposts = thread.posts.Count
+            };
+            subcategorythreads.Add(threaddto);
+        }
+        return subcategorythreads;
     }
     
     [Authorize]

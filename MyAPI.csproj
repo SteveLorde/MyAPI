@@ -25,6 +25,7 @@
     <ItemGroup>
       <Folder Include="Data\Migrations\" />
       <Folder Include="Data\Models\" />
+      <Folder Include="EShoppApp\Data\Migrations\" />
       <Folder Include="ForumApp\Data\Migrations\" />
     </ItemGroup>
     

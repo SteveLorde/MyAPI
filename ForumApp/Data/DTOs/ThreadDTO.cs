@@ -6,7 +6,8 @@ namespace MyAPI.ForumApp.Data.DTOs;
 public class ThreadDTO : BaseDTO
 {
     public string title { get; set; }
-    public List<Post> posts { get; set; }
-    public Guid UserId { get; set; }
+    public string date { get; set; }
+    public int numofposts { get; set; }
+    public Post lastpost { get; set; }
     
 }

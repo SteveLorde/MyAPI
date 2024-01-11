@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyAPI.Data;
+using MyAPI.EShoppApp.Data;
 using MyAPI.ForumApp.Data;
 
 namespace MyAPI.Services.Startup;
@@ -28,10 +29,18 @@ public class Startup : IStartup
         dbservice.Database.Migrate();
         */
         
+        //ForumApp
         var scopedb = _serviceprovider.CreateScope();
         var servicescopedb = scopedb.ServiceProvider;
         var forumdbservice = servicescopedb.GetRequiredService<ForumAppDbContext>();
         forumdbservice.Database.Migrate();
+        
+        //EShopApp
+        var eshopscopedb = _serviceprovider.CreateScope();
+        var servicedb = eshopscopedb.ServiceProvider;
+        var dbservice = servicedb.GetRequiredService<EShopDataContext>();
+        dbservice.Database.Migrate();
+        Console.WriteLine("Eshop Database Found/Created");
 
     }
 }

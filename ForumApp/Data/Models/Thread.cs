@@ -14,8 +14,5 @@ public class Thread : IEntity
     public User userowner { get; set; }
     public Guid SubCategoryId { get; set; }
     public SubCategory subcategory { get; set; }
-    [NotMapped]
-    public Post lastpost { get; set; }
-
 
 }

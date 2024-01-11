@@ -1,4 +1,7 @@
-﻿namespace MyAPI.Services.Startup;
+﻿using MyAPI.EShoppApp.Services.Repositories.NewsRepository;
+using MyAPI.EShoppApp.Services.Repositories.ProductsRepository;
+
+namespace MyAPI.Services.Startup;
 
 public class StorageStartup : IStorageStartup
 {
@@ -23,6 +26,17 @@ public class StorageStartup : IStorageStartup
         var forumappstoragefolder = Path.Combine(_webenv.ContentRootPath, "Storage", "ForumApp");
         Directory.CreateDirectory(forumappstoragefolder);
         Console.WriteLine("craated ForumApp Storage folder");
+        
+        //Eshop App
+        var scope1 = _serviceprovider.CreateScope();
+        var servicescoper1 = scope1.ServiceProvider;
+        var newsservice = servicescoper1.GetRequiredService<INewsRepository>();
+        newsservice.CreateNewsFolders();
+        
+        var scope2 = _serviceprovider.CreateScope();
+        var servicescoper2 = scope2.ServiceProvider;
+        var productservice = servicescoper2.GetRequiredService<IProductsRepository>();
+        productservice.CreateAssetsFolders();
         
         
     }
