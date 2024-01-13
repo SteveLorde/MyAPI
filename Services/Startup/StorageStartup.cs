@@ -1,5 +1,5 @@
-﻿using MyAPI.EShoppApp.Services.Repositories.NewsRepository;
-using MyAPI.EShoppApp.Services.Repositories.ProductsRepository;
+﻿using MyAPI.EShopApp.Services.Repositories.NewsRepository;
+using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
 namespace MyAPI.Services.Startup;
 

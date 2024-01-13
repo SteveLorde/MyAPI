@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyAPI.EShoppApp.Data.DTOs;
-using MyAPI.EShoppApp.Data.Models;
-using MyAPI.EShoppApp.Services.Repositories.ProductsRepository;
+using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Data.Models;
+using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
 namespace MyAPI.Controllers.EShopApp;
 

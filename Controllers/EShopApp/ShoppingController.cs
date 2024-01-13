@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MyAPI.EShoppApp.Data.DTOs;
-using MyAPI.EShoppApp.Services.Repositories.ProductsRepository;
-using MyAPI.EShoppApp.Services.Shopping;
+using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
+using MyAPI.EShopApp.Services.Shopping;
 
 namespace MyAPI.Controllers.EShopApp;
 
@@ -23,22 +23,14 @@ public class ShoppingController : Controller
     [Authorize]
     [HttpPost("checkout")]
     public async Task<bool> Checkout(PurchaseLogDTO purchasetolog)
-    {
-        try
-        {
-            var check = await _shoppingservice.Checkout(purchasetolog);
-            return check;
-        }
-        catch (Exception err)
-        {
-            throw err;
-        }
+    { 
+        return await _shoppingservice.Checkout(purchasetolog);
     }
     
     [HttpGet("addtocartcheck/{id}")]
     public async Task<bool> AddToCartCheck(string productid)
     {
-        return await _productrepo.CheckProduct();
+        return await _productrepo.CheckProduct(productid);
     }
     
     

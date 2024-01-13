@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyAPI.EShoppApp.Data.Models;
-using MyAPI.EShoppApp.Services.Repositories.NewsRepository;
+using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Data.Models;
+using MyAPI.EShopApp.Services.Repositories.NewsRepository;
 
 namespace MyAPI.Controllers.EShopApp;
 
@@ -26,9 +27,9 @@ public class NewsController : Controller
     }
     
     [HttpPost("addnews")]
-    public async Task<List<News>> AddNews()
+    public async Task<bool> AddNews(NewsDTO newstoadd)
     {
-        return await _newsrepo.AddNews();
+        return await _newsrepo.AddNews(newstoadd);
     }
     
     

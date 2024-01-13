@@ -27,11 +27,13 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
 });
-builder.Services.AddAutoMapper(typeof(AutoProfile));
-builder.Services.AddAutoMapper(typeof(ForumAppProfile));
+
 builder.Services.AddServices();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+});
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: "CorsPolicy", policyBuilder =>

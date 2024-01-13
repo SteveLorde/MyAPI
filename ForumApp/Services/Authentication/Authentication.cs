@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyAPI.Data;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DTOs;
+using MyAPI.ForumApp.Data.DTOs.Requests;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Authentication.Model;
 using MyAPI.ForumApp.Services.Repositories.Users;
@@ -28,7 +29,7 @@ class Authentication : IAuthentication
         _usersrepo = usersrepo;
     }
     
-    public async Task<string> Login(LoginDTO loginreq)
+    public async Task<string> Login(LoginRequestDTO loginreq)
     {
         string token = "token x";
         //1st, check username in database
@@ -54,10 +55,10 @@ class Authentication : IAuthentication
         }
     }
 
-    public async Task<bool> Register(RegisterDTO registerreq)
+    public async Task<bool> Register(RegisterRequestDTO registerreq)
     {
         //map a new userdto from authrequest
-        UserDTO usertohash = _mapper.Map<UserDTO>(registerreq);
+        UserRequestDTO usertohash = _mapper.Map<UserRequestDTO>(registerreq);
         //1-hash password
         string hashedpassword =  _hashservice.CreateHashedPassword(usertohash.password);
         //2-create new user

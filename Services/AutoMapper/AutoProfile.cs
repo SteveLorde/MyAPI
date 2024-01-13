@@ -6,6 +6,6 @@ public class AutoProfile : Profile
 {
     public AutoProfile()
     {
-        //CreateMap<UserDTO,User>();
+        //CreateMap<UserRequestDTO,User>();
     }
 }

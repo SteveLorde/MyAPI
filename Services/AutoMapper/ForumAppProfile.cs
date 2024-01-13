@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyAPI.ForumApp.Data.DTOs;
+using MyAPI.ForumApp.Data.DTOs.Responses;
 using MyAPI.ForumApp.Data.Models;
 using Thread = MyAPI.ForumApp.Data.Models.Thread;
 
@@ -9,8 +10,9 @@ public class ForumAppProfile : Profile
 {
     public ForumAppProfile()
     {
-        CreateMap<PostDTO,Post>();
-        CreateMap<ThreadDTO,Thread>();
+        CreateMap<PostResponseDTO,Post>();
+        CreateMap<ThreadResponseDTO,Thread>();
+        CreateMap<Thread,ThreadResponseDTO>();
         
     }
     

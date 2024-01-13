@@ -15,11 +15,11 @@ public static class ForumDataSeeder
         
         modelBuilder.Entity<Category>().HasData(
             new Category
-                { Id = Guid.Parse("90c4cfc8-45a4-4161-8c74-732f65a84f89"), name = "Category 1", subcategories = null },
+                { Id = Guid.Parse("90c4cfc8-45a4-4161-8c74-732f65a84f89"), orderingid = 1 ,name = "Category 1", subcategories = null },
             new Category
-                { Id = Guid.Parse("c2515af9-2d60-4239-a774-551cecf0b836"), name = "Category 2", subcategories = null },
+                { Id = Guid.Parse("c2515af9-2d60-4239-a774-551cecf0b836"), orderingid = 2 ,name = "Category 2", subcategories = null },
             new Category
-                { Id = Guid.Parse("833dbbe8-b226-4b88-bd2b-9638f9e782d6"), name = "Category 3", subcategories = null }
+                { Id = Guid.Parse("833dbbe8-b226-4b88-bd2b-9638f9e782d6"), orderingid = 3 ,name = "Category 3", subcategories = null }
         );
 
         modelBuilder.Entity<SubCategory>().HasData(
