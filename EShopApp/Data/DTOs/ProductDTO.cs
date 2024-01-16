@@ -8,8 +8,6 @@ public class ProductDTO
     public string? descriptionbullets { get; set; }
     public Guid? ParentCategoryId { get; set; }
     public Guid? SubCategoryId { get; set; }
-    public int? barcode { get; set; }
-
     public int? price { get; set; }
     public int quantity { get; set; }
     public int? discount { get; set; }

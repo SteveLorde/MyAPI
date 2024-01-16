@@ -7,6 +7,7 @@ using MyAPI.Data.DTOs;
 using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Authentication.Model;
+using MyAPI.Services.JWT.DTO;
 
 namespace MyAPI.Services.JWT;
 
@@ -27,14 +28,14 @@ class JWT : IJWT
 
     }
 
-    public string CreateToken(User user)
+    public string CreateToken(JWTRequestDTO userjwtreq)
     {
         string baseUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}{_httpContextAccessor.HttpContext.Request.PathBase}";
 
         List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.username),
-            new Claim("userid", user.Id.ToString()),
+            new Claim(ClaimTypes.Name, userjwtreq.username),
+            new Claim("userid", userjwtreq.Id.ToString()),
         };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtseckey));
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);

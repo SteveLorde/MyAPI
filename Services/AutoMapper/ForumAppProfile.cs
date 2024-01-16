@@ -3,6 +3,7 @@ using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.DTOs.Requests;
 using MyAPI.ForumApp.Data.DTOs.Responses;
 using MyAPI.ForumApp.Data.Models;
+using MyAPI.Services.JWT.DTO;
 using Thread = MyAPI.ForumApp.Data.Models.Thread;
 
 namespace MyAPI.Services.AutoMapper;
@@ -14,6 +15,7 @@ public class ForumAppProfile : Profile
         CreateMap<AddPostRequestDTO,Post>();
         CreateMap<AddThreadRequestDTO,Thread>();
         
+        CreateMap<User, JWTRequestDTO>();
         CreateMap<Category,CategoryResponseDTO>();
         CreateMap<SubCategory,SubCategoryResponseDTO>();
         CreateMap<Thread,ThreadResponseDTO>();

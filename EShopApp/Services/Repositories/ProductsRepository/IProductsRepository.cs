@@ -5,7 +5,7 @@ namespace MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
 public interface IProductsRepository
 {
-    public Task<List<Product>> GetProducts();
+    public Task<List<ProductDTO>> GetProducts();
     public Task<Product> GetProduct(string productid);
     public Task<List<Product>> GetMostSelling();
     public Task<List<ParentCategory>> GetParentCategories();

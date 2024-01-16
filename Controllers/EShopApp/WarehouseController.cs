@@ -17,7 +17,7 @@ public class WarehouseController : Controller
     }
 
     [HttpGet("getallproducts")]
-    public async Task<List<Product>> GetAllProducts()
+    public async Task<List<ProductDTO>> GetAllProducts()
     {
         return await _productsrepo.GetProducts();
     }

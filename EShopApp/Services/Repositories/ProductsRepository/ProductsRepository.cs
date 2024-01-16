@@ -19,9 +19,16 @@ class ProductsRepository : IProductsRepository
         _hostingenv = hostingEnvironment;
     }
     
-    public async Task<List<Product>> GetProducts()
+    public async Task<List<ProductDTO>> GetProducts()
     {
-        return await _db.Products.ToListAsync();
+        List<ProductDTO> allproductsresponse = new List<ProductDTO>();
+        var queriedproducts = await _db.Products.ToListAsync();
+        foreach (var product in queriedproducts)
+        {
+            ProductDTO productdto = _mapper.Map<ProductDTO>(product);
+            allproductsresponse.Add(productdto);
+        }
+        return allproductsresponse;
     }
 
     public async Task<Product> GetProduct(string productid)
