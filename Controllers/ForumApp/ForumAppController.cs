@@ -8,6 +8,7 @@ using MyAPI.ForumApp.Data.DTOs.Requests;
 using MyAPI.ForumApp.Data.DTOs.Responses;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Repositories.Forum;
+using MyAPI.ForumApp.Services.Repositories.Threads;
 using MyAPI.Services.Authentication;
 using IAuthentication = MyAPI.ForumApp.Services.Authentication.IAuthentication;
 using Thread = MyAPI.ForumApp.Data.Models.Thread;
@@ -21,21 +22,23 @@ public class ForumAppController : ControllerBase
     private readonly IForumService _dataservice;
     private readonly ForumAppDbContext _db;
     private readonly IAuthentication _authservice;
+    private readonly IThreadsService _threadsservice;
 
-    public ForumAppController(IForumService dataservice, IAuthentication authservice ,ForumAppDbContext db)
+    public ForumAppController(IForumService dataservice, IThreadsService threadsservice ,IAuthentication authservice ,ForumAppDbContext db)
     {
         _dataservice = dataservice;
         _db = db;
         _authservice = authservice;
+        _threadsservice = threadsservice;
     }
     
     //Categories
     //-----------------------
     
     [HttpGet("categories/getcategories")]
-    public async Task<List<Category>> GetCategories()
+    public async Task<List<CategoryResponseDTO>> GetCategories()
     {
-        return await _db.forumapp_categories.Include(category => category.subcategories).ToListAsync();
+        return await _dataservice.GetMainCategories();
     }
     
     //Authentcation
@@ -68,13 +71,13 @@ public class ForumAppController : ControllerBase
     [HttpGet("threads/getthread/{threadid}")]
     public async Task<ThreadResponseDTO> GetThread(string threadid)
     {
-        return await _dataservice.GetThread(threadid);
+        return await _threadsservice.GetThread(threadid);
     }
     
     [HttpGet("threads/getsubcategorythreads/{subcategoryid}")]
     public async Task<SubCategoryResponseDTO> GetSubCategoryThreads(string subcategoryid)
     {
-        return await _dataservice.GetSubCategoryThreads(subcategoryid);
+        return await _threadsservice.GetSubCategoryThreads(subcategoryid);
     }
     
     [Authorize]
@@ -82,7 +85,7 @@ public class ForumAppController : ControllerBase
     public async Task<bool> AddPost(AddThreadRequestDTO threadtoadd)
     {
         string userid = HttpContext.User.FindFirst("userid").Value;
-        return await _dataservice.AddThread(userid, threadtoadd);
+        return await _threadsservice.AddThread(userid, threadtoadd);
     }
     
     //Posts

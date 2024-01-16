@@ -11,7 +11,7 @@ using MyAPI.ForumApp.Data;
 namespace MyAPI.ForumApp.Data.Migrations
 {
     [DbContext(typeof(ForumAppDbContext))]
-    [Migration("20240106160651_Initial")]
+    [Migration("20240114224147_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -30,6 +30,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("orderingid")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("forumapp_categories");
@@ -38,17 +41,20 @@ namespace MyAPI.ForumApp.Data.Migrations
                         new
                         {
                             Id = new Guid("90c4cfc8-45a4-4161-8c74-732f65a84f89"),
-                            name = "Category 1"
+                            name = "Category 1",
+                            orderingid = 1
                         },
                         new
                         {
                             Id = new Guid("c2515af9-2d60-4239-a774-551cecf0b836"),
-                            name = "Category 2"
+                            name = "Category 2",
+                            orderingid = 2
                         },
                         new
                         {
                             Id = new Guid("833dbbe8-b226-4b88-bd2b-9638f9e782d6"),
-                            name = "Category 3"
+                            name = "Category 3",
+                            orderingid = 3
                         });
                 });
 
@@ -66,7 +72,7 @@ namespace MyAPI.ForumApp.Data.Migrations
 
                     b.Property<string>("body")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("json");
 
                     b.Property<DateTime>("date")
                         .HasColumnType("TEXT");
@@ -86,7 +92,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -94,7 +100,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -102,7 +108,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -110,7 +116,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -118,7 +124,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -126,7 +132,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
@@ -134,7 +140,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -232,7 +238,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             SubCategoryId = new Guid("cefe05d1-5747-4bfc-acb2-8f0d0cadcaf3"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         },
@@ -241,7 +247,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             SubCategoryId = new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         },
@@ -250,7 +256,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             SubCategoryId = new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         });
@@ -293,9 +299,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                         new
                         {
                             Id = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 6, 18, 6, 50, 777, DateTimeKind.Local).AddTicks(2573),
+                            date = new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(7931),
                             email = "testuser1@gmail.com",
-                            hashedpassword = "poxUxQqLwQsX+2xqtRiEvw==.+qLJTa0B+zPSxMUNhVVPTmbu59i0iARQt7vlvcYTCss=",
+                            hashedpassword = "DOQxmilHnXarEHYXaaiXQg==.ODzqtIkcvQSSrwwhe66nH14eKH4vNTX26MSAJS/Zpg4=",
                             profileimage = "",
                             username = "testuser1",
                             usertype = "user"
@@ -303,9 +309,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                         new
                         {
                             Id = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
-                            date = new DateTime(2024, 1, 6, 18, 6, 50, 777, DateTimeKind.Local).AddTicks(2634),
+                            date = new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(8084),
                             email = "testuser2@gmail.com",
-                            hashedpassword = "5TVQCRVtmFZd2a7QwudJ8Q==.26ruMzrzGBEslRZz/v1Gim+s05PREAXQTSjOGlxRbwA=",
+                            hashedpassword = "5gNo1HxL3K2wYom1YchxmQ==.+R5V3wwutk8ggt8WeZL3TNgwX4Flq8Fq7eoW1BB83zk=",
                             profileimage = "",
                             username = "testuser2",
                             usertype = "user"

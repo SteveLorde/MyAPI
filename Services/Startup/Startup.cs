@@ -21,15 +21,9 @@ public class Startup : IStartup
 
     public void ExecuteServices()
     {
+        //Storage Service CreateFolders
         _storagestartup.CreateFolders();
-        
-        /*
-        var scopedb = _serviceprovider.CreateScope();
-        var servicescopedb = scopedb.ServiceProvider;
-        var dbservice = servicescopedb.GetRequiredService<DataContext>();
-        dbservice.Database.Migrate();
-        */
-        
+
         //ForumApp
         var scopedb = _serviceprovider.CreateScope();
         var servicescopedb = scopedb.ServiceProvider;

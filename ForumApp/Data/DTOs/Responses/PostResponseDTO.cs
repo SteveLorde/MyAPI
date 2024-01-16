@@ -9,9 +9,9 @@ public class PostResponseDTO
     public Guid Id { get; set; }
     public string body { get; set; }
     public Guid UserId { get; set; }
-    public User userposter { get; set; }
+    public UserResponseDTO userposter { get; set; }
     public DateTime date { get; set; }
     public Guid ThreadId { get; set; }
-    public Thread thread { get; set; }
+    public ThreadResponseDTO thread { get; set; }
 
 }

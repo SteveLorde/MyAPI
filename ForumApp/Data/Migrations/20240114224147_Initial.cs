@@ -18,6 +18,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    orderingid = table.Column<int>(type: "INTEGER", nullable: false),
                     name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -94,7 +95,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    body = table.Column<string>(type: "TEXT", nullable: false),
+                    body = table.Column<string>(type: "json", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
                     date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ThreadId = table.Column<Guid>(type: "TEXT", nullable: false)
@@ -118,12 +119,12 @@ namespace MyAPI.ForumApp.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "forumapp_categories",
-                columns: new[] { "Id", "name" },
+                columns: new[] { "Id", "name", "orderingid" },
                 values: new object[,]
                 {
-                    { new Guid("833dbbe8-b226-4b88-bd2b-9638f9e782d6"), "Category 3" },
-                    { new Guid("90c4cfc8-45a4-4161-8c74-732f65a84f89"), "Category 1" },
-                    { new Guid("c2515af9-2d60-4239-a774-551cecf0b836"), "Category 2" }
+                    { new Guid("833dbbe8-b226-4b88-bd2b-9638f9e782d6"), "Category 3", 3 },
+                    { new Guid("90c4cfc8-45a4-4161-8c74-732f65a84f89"), "Category 1", 1 },
+                    { new Guid("c2515af9-2d60-4239-a774-551cecf0b836"), "Category 2", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -131,8 +132,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                 columns: new[] { "Id", "date", "email", "hashedpassword", "profileimage", "username", "usertype" },
                 values: new object[,]
                 {
-                    { new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), new DateTime(2024, 1, 6, 18, 6, 50, 777, DateTimeKind.Local).AddTicks(2634), "testuser2@gmail.com", "5TVQCRVtmFZd2a7QwudJ8Q==.26ruMzrzGBEslRZz/v1Gim+s05PREAXQTSjOGlxRbwA=", "", "testuser2", "user" },
-                    { new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 6, 18, 6, 50, 777, DateTimeKind.Local).AddTicks(2573), "testuser1@gmail.com", "poxUxQqLwQsX+2xqtRiEvw==.+qLJTa0B+zPSxMUNhVVPTmbu59i0iARQt7vlvcYTCss=", "", "testuser1", "user" }
+                    { new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(8084), "testuser2@gmail.com", "5gNo1HxL3K2wYom1YchxmQ==.+R5V3wwutk8ggt8WeZL3TNgwX4Flq8Fq7eoW1BB83zk=", "", "testuser2", "user" },
+                    { new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(7931), "testuser1@gmail.com", "DOQxmilHnXarEHYXaaiXQg==.ODzqtIkcvQSSrwwhe66nH14eKH4vNTX26MSAJS/Zpg4=", "", "testuser1", "user" }
                 });
 
             migrationBuilder.InsertData(
@@ -153,9 +154,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                 columns: new[] { "Id", "SubCategoryId", "UserId", "date", "numofposts", "title" },
                 values: new object[,]
                 {
-                    { new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" },
-                    { new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" },
-                    { new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("cefe05d1-5747-4bfc-acb2-8f0d0cadcaf3"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" }
+                    { new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" },
+                    { new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" },
+                    { new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("cefe05d1-5747-4bfc-acb2-8f0d0cadcaf3"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local), 2, "thread 1" }
                 });
 
             migrationBuilder.InsertData(
@@ -163,13 +164,13 @@ namespace MyAPI.ForumApp.Data.Migrations
                 columns: new[] { "Id", "ThreadId", "UserId", "body", "date" },
                 values: new object[,]
                 {
-                    { new Guid("138670af-28f1-4f35-8b3d-ea2f471e8aa1"), new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("272f7784-81ed-4961-b811-afcd1e349caf"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("31a43a68-1c17-44e0-9ca7-aa0226b68eee"), new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("4f59aba9-1628-4478-9657-c5ed7e46c38e"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("582fb677-681f-46db-8327-5c25e835845f"), new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("862042a9-b136-4153-a63b-1518ccfc5411"), new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { new Guid("bd936dff-86e8-49bb-85ce-3ad6bea81428"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { new Guid("138670af-28f1-4f35-8b3d-ea2f471e8aa1"), new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("272f7784-81ed-4961-b811-afcd1e349caf"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("31a43a68-1c17-44e0-9ca7-aa0226b68eee"), new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("4f59aba9-1628-4478-9657-c5ed7e46c38e"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("582fb677-681f-46db-8327-5c25e835845f"), new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("862042a9-b136-4153-a63b-1518ccfc5411"), new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"), new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("bd936dff-86e8-49bb-85ce-3ad6bea81428"), new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"), new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"), "Test Post", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.CreateIndex(

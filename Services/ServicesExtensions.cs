@@ -7,6 +7,7 @@ using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DataSeed;
 using MyAPI.ForumApp.Services.Authentication;
 using MyAPI.ForumApp.Services.Repositories.Forum;
+using MyAPI.ForumApp.Services.Repositories.Threads;
 using MyAPI.ForumApp.Services.Repositories.Users;
 using MyAPI.Services.AutoMapper;
 using MyAPI.Services.JWT;
@@ -22,7 +23,6 @@ public static class ServicesExtensions
     {
         //General
         services.AddAutoMapper(typeof(AutoProfile));
-        //services.AddDbContext<DataContext>();
         services.AddScoped<IStartup,Startup.Startup>();
         services.AddScoped<IStorageStartup, StorageStartup>();
         services.AddScoped<IPasswordHash, PasswordHash.PasswordHash>();
@@ -30,10 +30,10 @@ public static class ServicesExtensions
         services.AddHttpContextAccessor();
         
         //ForumApp Services
-
         services.AddAutoMapper(typeof(ForumAppProfile));
         services.AddDbContext<ForumAppDbContext>();
         services.AddScoped<IForumService,ForumService>();
+        services.AddScoped<IThreadsService,ThreadsService>();
         services.AddScoped<IAuthentication,ForumApp.Services.Authentication.Authentication>();
         services.AddScoped<IUsersRepository,UsersRepository>();
         

@@ -4,6 +4,11 @@ namespace MyAPI.ForumApp.Data.DTOs.Responses;
 
 public class ThreadResponseDTO
 {
+    public ThreadResponseDTO()
+    {
+        if (posts != null) this.lastpost = posts.Last();
+    }
+    
     public Guid Id { get; set; }
     public string title { get; set; }
     public string date { get; set; }
