@@ -35,19 +35,19 @@ public class WarehouseController : Controller
     }
     
     [HttpGet("getproduct/{productid}")]
-    public async Task<Product> GetProduct(string productid)
+    public async Task<ProductDTO> GetProduct(string productid)
     {
         return await _productsrepo.GetProduct(productid);
     }
     
     [HttpGet("getcategoryproducts/{categoryid}")]
-    public async Task<List<Product>> GetCategoryProducts(string categoryid)
+    public async Task<List<ProductDTO>> GetCategoryProducts(string categoryid)
     {
         return await _productsrepo.GetProductsByCategory(categoryid);
     }
 
     [HttpGet("mostselling")]
-    public async Task<List<Product>> ReturnMostSelling()
+    public async Task<List<ProductDTO>> ReturnMostSelling()
     {
         return await _productsrepo.GetMostSelling();
     }

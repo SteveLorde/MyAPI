@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.DTOs;
@@ -31,10 +32,11 @@ class ProductsRepository : IProductsRepository
         return allproductsresponse;
     }
 
-    public async Task<Product> GetProduct(string productid)
+    public async Task<ProductDTO> GetProduct(string productid)
     {
-        var productguid = Guid.Parse(productid);
-        return await _db.Products.FirstAsync(product => product.Id == productguid);
+        var queriedproduct = await _db.Products.FirstAsync(product => product.Id == Guid.Parse(productid));
+        ProductDTO productresponse = _mapper.Map<ProductDTO>(queriedproduct);
+        return productresponse;
     }
 
     public async Task<List<ParentCategory>> GetParentCategories()
@@ -47,24 +49,23 @@ class ProductsRepository : IProductsRepository
         return await _db.ParentCategories.Where(x => x.Id == Guid.Parse(maincategoryid) ).SelectMany(z => z.Categories).Include(a => a.ParentCategory).ToListAsync();
     }
 
-    public async Task<List<Product>> GetProductsByCategory(string categoryid)
+    public async Task<List<ProductDTO>> GetProductsByCategory(string categoryid)
     {
-        return await _db.Products.Where(x => x.Category.ParentCategoryId == Guid.Parse(categoryid) || x.CategoryId == Guid.Parse(categoryid) ).ToListAsync();
+        var queriedproducts = await _db.Products.Where(x => x.Category.ParentCategoryId == Guid.Parse(categoryid) || x.CategoryId == Guid.Parse(categoryid) ).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        return queriedproducts;
     }
     
-    public async Task<List<Product>> GetMostSelling()
+    public async Task<List<ProductDTO>> GetMostSelling()
     {
-        return await _db.Products.OrderByDescending(x => x.sells).Take(15).ToListAsync();
+        return await _db.Products.OrderByDescending(x => x.sells).Take(15).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
     public async Task CreateAssetsFolders()
     {
-        try
+        var productsfoldertocheck = Path.Combine(_hostingenv.ContentRootPath, "Storage", "EShopApp", "Products");
+        bool checkdirectory = Directory.Exists(productsfoldertocheck);
+        if (!checkdirectory)
         {
-            var productsfoldertocheck = Path.Combine(_hostingenv.ContentRootPath, "Storage", "EShopApp", "Products");
-            bool checkdirectory = Directory.Exists(productsfoldertocheck);
-            if (checkdirectory)
-            {
                 List<Product> allproducts = await _db.Products.ToListAsync();
                 foreach (Product product in allproducts)
                 {
@@ -73,15 +74,9 @@ class ProductsRepository : IProductsRepository
                     Directory.CreateDirectory(productfoldertocreate); 
                 }
                 Console.WriteLine("EShop: Created Products assets folders successfully");
-            }
-            else
-            {
-                return;
-            }
         }
-        catch (Exception err)
-        {
-            throw err;
+        else { 
+                return;
         }
     }
     
@@ -118,9 +113,9 @@ class ProductsRepository : IProductsRepository
         await _db.SaveChangesAsync();
     }
 
-    public async Task RemoveProduct(ProductDTO producttoremove)
+    public async Task RemoveProduct(string productid)
     {
-        Product removeproduct = await _db.Products.FirstAsync(x => x.Id == producttoremove.id);
+        Product removeproduct = await _db.Products.FirstAsync(x => x.Id == Guid.Parse(productid));
         _db.Products.Remove(removeproduct);
         await _db.SaveChangesAsync();
     }

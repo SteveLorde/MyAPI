@@ -22,11 +22,9 @@ class NewsRepository : INewsRepository
     
     public async Task CreateNewsFolders()
     {
-        try
-        {
             var newsfoldertocheck = Path.Combine(_hostenv.ContentRootPath, "Storage", "EShopApp", "News");
             bool checkdirectory = Directory.Exists(newsfoldertocheck);
-            if (checkdirectory)
+            if (!checkdirectory)
             {
                 List<News> allnews = await _db.News.ToListAsync();
                 foreach (News news in allnews)
@@ -41,11 +39,6 @@ class NewsRepository : INewsRepository
             {
                 return;
             }
-        }
-        catch (Exception err)
-        {
-            throw err;
-        }
     }
     
     public async Task<List<News>> GetNews()
