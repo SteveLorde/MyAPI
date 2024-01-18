@@ -38,10 +38,10 @@ public class EShopDataContext : DbContext
             new Category {Id = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), name = "Face and Hair", ParentCategoryId = Guid.Parse("780fcde6-9c0f-11ee-8c90-0242ac120002")}
         );
         
-        modelBuilder.Entity<News>().HasData(
-            new News { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg"},
-            new News { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" },
-            new News { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" }
+        modelBuilder.Entity<Event>().HasData(
+            new Event { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg"},
+            new Event { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" },
+            new Event { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" }
             );
         
         modelBuilder.Entity<Product>().HasData(
@@ -63,9 +63,8 @@ public class EShopDataContext : DbContext
     
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<News> News { get; set; }
+    public DbSet<Event> Events { get; set; }
     public DbSet<PurchaseLog> PurchaseLogs { get; set; }
     public DbSet<ParentCategory> ParentCategories { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<DiscountEvent> DiscountEvents { get; set; }
 }

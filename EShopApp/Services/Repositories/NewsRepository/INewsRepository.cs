@@ -6,8 +6,8 @@ namespace MyAPI.EShopApp.Services.Repositories.NewsRepository;
 public interface INewsRepository
 {
     public Task CreateNewsFolders();
-    public Task<List<News>> GetNews();
-    public Task<bool> AddNews(NewsDTO newstoadd);
-    public Task UpdateNews(NewsDTO newstoupdate);
+    public Task<List<Event>> GetNews();
+    public Task<bool> AddNews(EventDTO newstoadd);
+    public Task UpdateNews(EventDTO newstoupdate);
     public Task RemoveNews(string newsid);
 }

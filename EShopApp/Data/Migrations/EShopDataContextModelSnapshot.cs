@@ -99,7 +99,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.ToTable("DiscountEvents");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.News", b =>
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Event", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace MyAPI.EShopApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("Event");
 
                     b.HasData(
                         new

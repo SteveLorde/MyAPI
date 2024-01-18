@@ -1,6 +1,6 @@
 ﻿namespace MyAPI.EShopApp.Data.DTOs;
 
-public class NewsDTO
+public class EventDTO
 {
     public Guid Id { get; set; }
     public string title { get; set; }

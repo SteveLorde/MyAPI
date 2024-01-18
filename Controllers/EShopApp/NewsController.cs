@@ -21,13 +21,13 @@ public class NewsController : Controller
     
     
     [HttpGet("getnews")]
-    public async Task<List<News>> GetNews()
+    public async Task<List<Event>> GetNews()
     {
         return await _newsrepo.GetNews();
     }
     
     [HttpPost("addnews")]
-    public async Task<bool> AddNews(NewsDTO newstoadd)
+    public async Task<bool> AddNews(EventDTO newstoadd)
     {
         return await _newsrepo.AddNews(newstoadd);
     }
