@@ -39,9 +39,9 @@ public class EShopDataContext : DbContext
         );
         
         modelBuilder.Entity<Event>().HasData(
-            new Event { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg"},
-            new Event { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" },
-            new Event { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = null, description = "Desc Test", published = new DateOnly(2024,1,1), image = "newscover.jpg" }
+            new Event { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18) ,discountamount = 50, image = "newscover.jpg"},
+            new Event { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 50,image = "newscover.jpg" },
+            new Event { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 20,image = "newscover.jpg" }
             );
         
         modelBuilder.Entity<Product>().HasData(
