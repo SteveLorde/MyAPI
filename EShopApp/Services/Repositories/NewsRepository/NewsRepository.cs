@@ -22,18 +22,18 @@ class NewsRepository : INewsRepository
     
     public async Task CreateNewsFolders()
     {
-            var newsfoldertocheck = Path.Combine(_hostenv.ContentRootPath, "Storage", "EShopApp", "Event");
+            var newsfoldertocheck = Path.Combine(_hostenv.ContentRootPath, "Storage", "EShopApp", "DiscountEvent");
             bool checkdirectory = Directory.Exists(newsfoldertocheck);
             if (!checkdirectory)
             {
-                List<Event> allnews = await _db.News.ToListAsync();
-                foreach (Event news in allnews)
+                List<DiscountEvent> allnews = await _db.DiscountEvents.ToListAsync();
+                foreach (DiscountEvent news in allnews)
                 {
-                    var newsfoldertocreate = Path.Combine(_hostenv.ContentRootPath, "Storage", "EShopApp" , "Event",
+                    var newsfoldertocreate = Path.Combine(_hostenv.ContentRootPath, "Storage", "EShopApp" , "DiscountEvent",
                         $"{news.Id}", "Images");
                     Directory.CreateDirectory(newsfoldertocreate); 
                 }
-                Console.WriteLine("EShop: Created Event folders successfully");
+                Console.WriteLine("EShop: Created DiscountEvent folders successfully");
             }
             else
             {
@@ -41,32 +41,32 @@ class NewsRepository : INewsRepository
             }
     }
     
-    public async Task<List<Event>> GetNews()
+    public async Task<List<DiscountEvent>> GetNews()
     {
-        return await _db.News.ToListAsync();
+        return await _db.DiscountEvents.ToListAsync();
     }
 
     public async Task<bool> AddNews(EventDTO newstoadd)
     {
-        Event @event = new Event();
-        @event = _mapper.Map<Event>(newstoadd);
-        await _db.News.AddAsync(@event);
+        DiscountEvent discountEvent = new DiscountEvent();
+        discountEvent = _mapper.Map<DiscountEvent>(newstoadd);
+        await _db.DiscountEvents.AddAsync(discountEvent);
         await _db.SaveChangesAsync();
         return true;
     }
 
     public async Task UpdateNews(EventDTO newstoupdate)
     {
-        Event selectednews = await _db.News.FirstAsync(x => x.Id == newstoupdate.Id);
-        selectednews = _mapper.Map<Event>(newstoupdate);
-        _db.News.Update(selectednews);
+        DiscountEvent selectednews = await _db.DiscountEvents.FirstAsync(x => x.Id == newstoupdate.Id);
+        selectednews = _mapper.Map<DiscountEvent>(newstoupdate);
+        _db.DiscountEvents.Update(selectednews);
         await _db.SaveChangesAsync();
     }
 
     public async Task RemoveNews(string newsid)
     {
-        Event selectednews = await _db.News.FirstAsync(x => x.Id == Guid.Parse(newsid));
-        _db.News.Remove(selectednews);
+        DiscountEvent selectednews = await _db.DiscountEvents.FirstAsync(x => x.Id == Guid.Parse(newsid));
+        _db.DiscountEvents.Remove(selectednews);
         await _db.SaveChangesAsync();
     }
     

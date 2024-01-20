@@ -27,7 +27,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Event",
+                name: "DiscountEvent",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -151,7 +151,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Event",
+                table: "DiscountEvent",
                 columns: new[] { "Id", "description", "image", "published", "subtitle", "title" },
                 values: new object[,]
                 {
@@ -235,7 +235,7 @@ namespace MyAPI.EShopApp.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Event");
+                name: "DiscountEvent");
 
             migrationBuilder.DropTable(
                 name: "PurchaseLogs");

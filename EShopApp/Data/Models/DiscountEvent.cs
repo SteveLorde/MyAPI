@@ -2,7 +2,7 @@
 
 namespace MyAPI.EShopApp.Data.Models;
 
-public class Event
+public class DiscountEvent
 {
     [Key]
     public Guid Id { get; set; }
@@ -12,8 +12,8 @@ public class Event
     public DateOnly startdate { get; set; }
     public DateOnly enddate { get; set; }
     public string? image { get; set; }
-    
     public decimal discountamount { get; set; }
-    public List<Product> Products { get; set; }
+    public bool ispercentage { get; set; }
+    public List<Product> products { get; set; }
     
 }

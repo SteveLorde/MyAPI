@@ -21,7 +21,7 @@ public class NewsController : Controller
     
     
     [HttpGet("getnews")]
-    public async Task<List<Event>> GetNews()
+    public async Task<List<DiscountEvent>> GetNews()
     {
         return await _newsrepo.GetNews();
     }

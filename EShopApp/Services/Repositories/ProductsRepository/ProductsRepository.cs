@@ -82,7 +82,7 @@ class ProductsRepository : IProductsRepository
     
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { Id = Guid.NewGuid(),name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1), DiscountEvent = null };
+        Product newproduct = new Product { Id = Guid.NewGuid(),name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1)};
         await _db.Products.AddAsync(newproduct);
         var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "EShopApp", "Products", $"{newproduct.Id}", "Images");
         Directory.CreateDirectory(productfoldertocreate);
