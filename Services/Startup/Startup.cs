@@ -2,6 +2,7 @@
 using MyAPI.Data;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data;
+using MyAPI.EShopApp.Data.Seeding;
 using MyAPI.ForumApp.Data;
 
 namespace MyAPI.Services.Startup;
@@ -11,12 +12,14 @@ public class Startup : IStartup
     private readonly IServiceProvider _serviceprovider;
     private readonly IWebHostEnvironment _webenv;
     private readonly IStorageStartup _storagestartup;
+    private readonly EShopCustomSeeding _eShopCustomSeeding;
 
-    public Startup(IServiceProvider serviceProvider, IWebHostEnvironment webenv, IStorageStartup storagestartup)
+    public Startup(IServiceProvider serviceProvider, IWebHostEnvironment webenv, IStorageStartup storagestartup, EShopCustomSeeding eShopCustomSeeding)
     {
         _serviceprovider = serviceProvider;
         _webenv = webenv;
         _storagestartup = storagestartup;
+        _eShopCustomSeeding = eShopCustomSeeding;
     }
 
     public void ExecuteServices()
@@ -35,6 +38,6 @@ public class Startup : IStartup
         var servicedb = eshopscopedb.ServiceProvider;
         var eshopdbservice = servicedb.GetRequiredService<EShopDataContext>();
         eshopdbservice.Database.Migrate();
-
+        _eShopCustomSeeding.SeedDiscountsProducts();
     }
 }

@@ -57,7 +57,7 @@ class ProductsRepository : IProductsRepository
     
     public async Task<List<ProductDTO>> GetMostSelling()
     {
-        return await _db.Products.OrderByDescending(x => x.sells).Take(15).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        return await _db.Products.OrderByDescending(x => x.Sells).Take(15).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
     public async Task CreateAssetsFolders()
@@ -82,7 +82,7 @@ class ProductsRepository : IProductsRepository
     
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { Id = Guid.NewGuid(),name = producttoadd.name , description = producttoadd.description, descriptionbullets = producttoadd.descriptionbullets, CategoryId = producttoadd.SubCategoryId, price = producttoadd.price, addedon = new DateOnly(2024,1,1)};
+        Product newproduct = new Product { Id = Guid.NewGuid(),Name = producttoadd.name , Description = producttoadd.description, CategoryId = producttoadd.SubCategoryId, Price = producttoadd.price, AddedOn = new DateOnly(2024,1,1)};
         await _db.Products.AddAsync(newproduct);
         var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "EShopApp", "Products", $"{newproduct.Id}", "Images");
         Directory.CreateDirectory(productfoldertocreate);
@@ -96,7 +96,7 @@ class ProductsRepository : IProductsRepository
     public async Task<bool> CheckProduct(string productid)
     {
         Product product = await _db.Products.FirstAsync(p => p.Id == Guid.Parse(productid));
-        if (product.storequantity > 0)
+        if (product.StoreQuantity > 0)
         {
             return true;
         }

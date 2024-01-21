@@ -1,4 +1,4 @@
-﻿using MyAPI.EShopApp.Services.Repositories.NewsRepository;
+﻿using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
 namespace MyAPI.Services.Startup;
@@ -13,8 +13,7 @@ public class StorageStartup : IStorageStartup
         _serviceprovider = serviceProvider;
         _webenv = webenv;
     }
-
-
+    
     public void CreateFolders()
     {
         //General
@@ -30,8 +29,8 @@ public class StorageStartup : IStorageStartup
         //Eshop App
         var scope1 = _serviceprovider.CreateScope();
         var servicescoper1 = scope1.ServiceProvider;
-        var newsservice = servicescoper1.GetRequiredService<INewsRepository>();
-        newsservice.CreateNewsFolders();
+        var newsservice = servicescoper1.GetRequiredService<IDiscountEventsRepository>();
+        newsservice.CreateEventsFolders();
         
         var scope2 = _serviceprovider.CreateScope();
         var servicescoper2 = scope2.ServiceProvider;

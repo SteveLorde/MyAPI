@@ -1,23 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using MyAPI.EShopApp.Data.JointModels;
 
 namespace MyAPI.EShopApp.Data.Models;
 
 public class Product
 {
-    [Key]
     public Guid Id { get; set; }
-    public string name { get; set; }
-    public string? description { get; set; }
-    public string? descriptionbullets { get; set; }
-    
+    public string Name { get; set; }
+    public string Description { get; set; }
     public Guid? CategoryId { get; set; }
     public Category Category { get; set; }
-    public int? price { get; set; }
-    public int? barcode { get; set; }
-    public int storequantity { get; set; }
-    public DateOnly? addedon { get; set; }
-    public List<DiscountEvent> discountevents { get; set; }
-    public string[]? images { get; set; }
-    public int? sells { get; set; }
-    
+    public int Price { get; set; }
+    public int? Barcode { get; set; }
+    public int StoreQuantity { get; set; }
+    public DateOnly AddedOn { get; set; }
+    public string[] Images { get; set; }
+    public int Sells { get; set; }
+    public List<DiscountEvent> DiscountEvents { get; set; }
+
 }

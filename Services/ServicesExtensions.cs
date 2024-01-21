@@ -1,8 +1,9 @@
 ﻿using MyAPI.Data;
 using MyAPI.EShopApp.Data;
-using MyAPI.EShopApp.Services.Repositories.NewsRepository;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 using MyAPI.EShopApp.Data;
+using MyAPI.EShopApp.Data.Seeding;
+using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DataSeed;
 using MyAPI.ForumApp.Services.Authentication;
@@ -40,8 +41,9 @@ public static class ServicesExtensions
         //EShop Services
         services.AddDbContext<EShopDataContext>();
         services.AddAutoMapper(typeof(EShopMappingProfile));
-        services.AddScoped<INewsRepository, NewsRepository>();
+        services.AddScoped<IDiscountEventsRepository, DiscountEventsRepository>();
         services.AddScoped<IProductsRepository, ProductsRepository>();
+        services.AddScoped<EShopCustomSeeding>();
 
     }
     

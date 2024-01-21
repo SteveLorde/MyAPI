@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyAPI.EShopApp.Data.JointModels;
 using MyAPI.EShopApp.Data.Models;
 
 namespace MyAPI.EShopApp.Data;
@@ -39,31 +40,40 @@ public class EShopDataContext : DbContext
         );
         
         modelBuilder.Entity<DiscountEvent>().HasData(
-            new DiscountEvent { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18) ,discountamount = 50, image = "newscover.jpg"},
-            new DiscountEvent { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 50,image = "newscover.jpg" },
-            new DiscountEvent { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = null, description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 20,image = "newscover.jpg" }
-            );
+            new DiscountEvent { Id = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), title = "Christmas Discounts on Electronics", subtitle = "null", description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18) ,discountamount = 50, image = "newscover.jpg"},
+            new DiscountEvent { Id = Guid.Parse("1a55b12e-65b8-4542-b4c1-6676c30311e7"), title = "Shop Smart, Save Big: Exclusive Year-End Sale with Unbeatable Discounts!", subtitle = "null", description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 50,image = "newscover.jpg" },
+            new DiscountEvent { Id = Guid.Parse("93097c20-6558-4ed9-a27e-8bf07fb59b8a"), title = "Digital Winter VideoGames Sales", subtitle = "null", description = "Desc Test", startdate = new DateOnly(2024, 1, 18), enddate = new DateOnly(2024, 2, 18), discountamount = 20,image = "newscover.jpg" }
+        );
         
         modelBuilder.Entity<Product>().HasData(
-            new Product { Id = Guid.Parse("4eaf8297-449c-4aea-a656-a92b8730a201"), name = "PC Build 2024", description = "Description Test", CategoryId = Guid.Parse("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"), price = 500 ,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("4fe905ac-63ae-4e9c-a10f-b6379b594c18"), name = "Face Cosmetic Kit", description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), price = 74,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("45ee830f-a1f3-44ad-8112-982ef324dab4"), name = "Hair Care Kit", description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), price = 200,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("710df7a2-9cf9-4b80-89d5-20be76a621af"), name = "Body Care Kit", description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), price = 1000,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("4679e631-8273-49cd-91a6-fae714ea9d73"), name = "Videogame", description = "Description Test", CategoryId = Guid.Parse("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"), price = 500,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("b199f9b1-cf03-4990-876e-492df1cf69d1"), name = "Playstation 5", description = "Description Test", CategoryId = Guid.Parse("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"), price = 500,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("f741ceca-8eed-40a6-8706-3181886a2e23"), name = "Android Tablet", description = "Description Test", CategoryId = Guid.Parse("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"), price = 500,images = new string[] {"1.jpg", "2.jpg" } },
-            new Product { Id = Guid.Parse("f4411dd9-d96a-4104-9d33-30f7beb3ad05"), name = "Air Fryer", description = "Description Test", CategoryId = Guid.Parse("3ac2239f-3d70-4da0-b81e-bda272847e7c"), price = 500,images = new string[] {"1.jpg", "2.jpg" } }
-                );
-
+            new Product { Id = Guid.Parse("4eaf8297-449c-4aea-a656-a92b8730a201"), Name = "PC Build 2024", Description = "Description Test", CategoryId = Guid.Parse("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"), Price = 500 ,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("4fe905ac-63ae-4e9c-a10f-b6379b594c18"), Name = "Face Cosmetic Kit", Description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), Price = 74,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("45ee830f-a1f3-44ad-8112-982ef324dab4"), Name = "Hair Care Kit", Description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), Price = 200,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("710df7a2-9cf9-4b80-89d5-20be76a621af"), Name = "Body Care Kit", Description = "Description Test", CategoryId = Guid.Parse("3e80f63e-6866-4a58-a7e7-8151b8c7c199"), Price = 1000,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("4679e631-8273-49cd-91a6-fae714ea9d73"), Name = "Videogame", Description = "Description Test", CategoryId = Guid.Parse("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"), Price = 500,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("b199f9b1-cf03-4990-876e-492df1cf69d1"), Name = "Playstation 5", Description = "Description Test", CategoryId = Guid.Parse("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"), Price = 500,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("f741ceca-8eed-40a6-8706-3181886a2e23"), Name = "Android Tablet", Description = "Description Test", CategoryId = Guid.Parse("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"), Price = 500,Images = new string[] {"1.jpg", "2.jpg" } },
+            new Product { Id = Guid.Parse("f4411dd9-d96a-4104-9d33-30f7beb3ad05"), Name = "Air Fryer", Description = "Description Test", CategoryId = Guid.Parse("3ac2239f-3d70-4da0-b81e-bda272847e7c"), Price = 500,Images = new string[] {"1.jpg", "2.jpg" } }
+            );
+        
+        /*
+        modelBuilder.Entity<ProductDiscount>().HasNoKey().HasData(
+            new ProductDiscount {DiscountEventId = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), ProductId = Guid.Parse("4eaf8297-449c-4aea-a656-a92b8730a201")},
+            new ProductDiscount {DiscountEventId = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), ProductId = Guid.Parse("b199f9b1-cf03-4990-876e-492df1cf69d1")}
+            );
+        */
+        
         modelBuilder.Entity<User>().HasData(
             new User
             { Id = Guid.Parse("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"), username = "testuser", pass_salt = null, hashedpassword = null, usertype = "user", phonenumber = 123456789, email = "test@gmail.com",profileimage = "profile.jpg"}
         );
+        
     }
     
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<DiscountEvent> DiscountEvents { get; set; }
+    //public DbSet<ProductDiscount> ProductDiscounts  { get; set;}
     public DbSet<PurchaseLog> PurchaseLogs { get; set; }
     public DbSet<ParentCategory> ParentCategories { get; set; }
     public DbSet<Category> Categories { get; set; }

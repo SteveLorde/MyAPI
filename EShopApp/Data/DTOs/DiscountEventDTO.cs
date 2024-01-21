@@ -1,6 +1,6 @@
 ﻿namespace MyAPI.EShopApp.Data.DTOs;
 
-public class EventDTO
+public class DiscountEventDTO
 {
     public Guid Id { get; set; }
     public string title { get; set; }
@@ -9,4 +9,5 @@ public class EventDTO
     public DateOnly? published { get; set; }
     public string? image { get; set; }
     public IFormFile imagefile { get; set; }
+    public List<ProductDTO> products { get; set; }
 }
