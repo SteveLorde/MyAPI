@@ -25,7 +25,6 @@ class JWT : IJWT
         _config = config;
         jwtseckey = _config["secretkey"];
         _httpContextAccessor = httpContextAccessor;
-
     }
 
     public string CreateToken(JWTRequestDTO userjwtreq)

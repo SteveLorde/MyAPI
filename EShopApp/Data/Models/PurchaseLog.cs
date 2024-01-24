@@ -10,6 +10,7 @@ public class PurchaseLog
     public Product Product { get; set; }
     public Guid UserId { get; set; }
     public User User { get; set; }
-    public bool accepted { get; set; }
-    public DateTime datetime { get; set; }
+    public decimal totalcost { get; set; }
+    public bool IsAccepted { get; set; }
+    public DateTime CheckoutOn { get; set; }
 }

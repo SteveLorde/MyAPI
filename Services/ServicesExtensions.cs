@@ -29,13 +29,6 @@ public static class ServicesExtensions
         services.AddScoped<IPasswordHash, PasswordHash.PasswordHash>();
         services.AddScoped<IJWT, JWT.JWT>();
         services.AddHttpContextAccessor();
-        
-        //ForumApp Services
-
-        
-        //EShop Services
-
-
     }
     
     

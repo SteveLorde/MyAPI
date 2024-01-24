@@ -5,7 +5,7 @@ namespace MyAPI.Services.Authentication;
 
 public interface IAuthentication
 {
-    public Task Login(LoginRequestDTO loginreq);
+    public Task Login();
     public Task Register();
-    public Task GetUser(string userid);
+    public Task GetUser();
 }

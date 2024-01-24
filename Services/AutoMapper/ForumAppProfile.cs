@@ -12,15 +12,18 @@ public class ForumAppProfile : Profile
 {
     public ForumAppProfile()
     {
-        CreateMap<AddPostRequestDTO,Post>();
-        CreateMap<AddThreadRequestDTO,Thread>();
         
+        //MODEL TO DTO
         CreateMap<User, JWTRequestDTO>();
         CreateMap<Category,CategoryResponseDTO>();
         CreateMap<SubCategory,SubCategoryResponseDTO>();
         CreateMap<Thread,ThreadResponseDTO>();
         CreateMap<Post,PostResponseDTO>();
         CreateMap<User,UserResponseDTO>();
+        
+        //DTO TO MODEL
+        CreateMap<AddPostRequestDTO,Post>();
+        CreateMap<AddThreadRequestDTO,Thread>();
         
     }
     

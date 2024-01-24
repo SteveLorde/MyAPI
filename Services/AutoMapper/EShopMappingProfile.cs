@@ -9,12 +9,14 @@ public class EShopMappingProfile : Profile
 {
     public EShopMappingProfile()
     {
+        //MODEL TO DTO
         CreateMap<User, JWTRequestDTO>();
+        CreateMap<Product,ProductDTO>();
+        CreateMap<DiscountEvent,DiscountEventDTO>();
+        
+        //DTO to MODEL
         CreateMap<DiscountEventDTO,DiscountEvent>();
         CreateMap<ProductDTO,Product>();
         CreateMap<PurchaseLogDTO,PurchaseLog>();
-        
-        CreateMap<Product,ProductDTO>();
-        CreateMap<DiscountEvent,DiscountEventDTO>();
     }
 }

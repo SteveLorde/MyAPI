@@ -15,7 +15,7 @@ class PasswordHash : IPasswordHash
             hash = hashedpassword,
             salt = salt
         };
-        //create a string of pattern salt.hashedpassword
+        //create a string of pattern [SALT.HASHEDPASSWORD]
         string hashedpass = salt + "." + hashedpassword;
         return hashedpass;
     }
@@ -24,7 +24,6 @@ class PasswordHash : IPasswordHash
     {
         return GenerateHashedPassword(password, salt);
     }
-
     
     private string GenerateSalt()
     {
@@ -34,7 +33,6 @@ class PasswordHash : IPasswordHash
         string base64salt = Convert.ToBase64String(salt);
         return base64salt;
     }
-    
     
     private string GenerateHashedPassword(string password, string salt)
     {
