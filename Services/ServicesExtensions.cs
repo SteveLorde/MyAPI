@@ -31,19 +31,10 @@ public static class ServicesExtensions
         services.AddHttpContextAccessor();
         
         //ForumApp Services
-        services.AddAutoMapper(typeof(ForumAppProfile));
-        services.AddDbContext<ForumAppDbContext>();
-        services.AddScoped<IForumService,ForumService>();
-        services.AddScoped<IThreadsService,ThreadsService>();
-        services.AddScoped<IAuthentication,ForumApp.Services.Authentication.Authentication>();
-        services.AddScoped<IUsersRepository,UsersRepository>();
+
         
         //EShop Services
-        services.AddDbContext<EShopDataContext>();
-        services.AddAutoMapper(typeof(EShopMappingProfile));
-        services.AddScoped<IDiscountEventsRepository, DiscountEventsRepository>();
-        services.AddScoped<IProductsRepository, ProductsRepository>();
-        services.AddScoped<EShopCustomSeeding>();
+
 
     }
     
