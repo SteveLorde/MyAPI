@@ -6,7 +6,7 @@ using MyAPI.Services.AutoMapper;
 
 namespace MyAPI.EShopApp.Services;
 
-public static class EShopServicesInit
+public static class EShopServicesExtension
 {
     public static void AddEShopServices(this IServiceCollection services)
     {

@@ -34,9 +34,9 @@ class ProductsRepository : IProductsRepository
 
     public async Task<ProductDTO> GetProduct(string productid)
     {
-        var queriedproduct = await _db.Products.FirstAsync(product => product.Id == Guid.Parse(productid));
-        ProductDTO productresponse = _mapper.Map<ProductDTO>(queriedproduct);
-        return productresponse;
+        var queriedproduct = await _db.Products.Include(p => p.DiscountEvents).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).FirstAsync(product => product.Id == Guid.Parse(productid));
+        //ProductDTO productresponse = _mapper.Map<ProductDTO>(queriedproduct);
+        return queriedproduct;
     }
 
     public async Task<List<ParentCategory>> GetParentCategories()
@@ -108,7 +108,7 @@ class ProductsRepository : IProductsRepository
     
     public async Task UpdateProduct(ProductDTO producttoupdate)
     {
-        Product selectedproduct = await _db.Products.FirstAsync(x => x.Id == producttoupdate.id);
+        Product selectedproduct = await _db.Products.FirstAsync(x => x.Id == producttoupdate.Id);
         _mapper.Map(producttoupdate, selectedproduct);
         await _db.SaveChangesAsync();
     }

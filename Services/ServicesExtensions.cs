@@ -29,6 +29,17 @@ public static class ServicesExtensions
         services.AddScoped<IPasswordHash, PasswordHash.PasswordHash>();
         services.AddScoped<IJWT, JWT.JWT>();
         services.AddHttpContextAccessor();
+        
+        //forumapp
+        services.AddAutoMapper(typeof(ForumAppProfile));
+        services.AddDbContext<ForumAppDbContext>();
+        services.AddScoped<IForumService,ForumService>();
+        services.AddScoped<IThreadsService,ThreadsService>();
+        services.AddScoped<IAuthentication,ForumApp.Services.Authentication.Authentication>();
+        services.AddScoped<IUsersRepository,UsersRepository>();
+        
+        //eshop app
+
     }
     
     

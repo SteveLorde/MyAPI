@@ -1,8 +1,10 @@
-﻿namespace MyAPI.EShopApp.Data.DTOs;
+﻿using MyAPI.EShopApp.Data.Models;
+
+namespace MyAPI.EShopApp.Data.DTOs;
 
 public class ProductDTO
 {
-    public Guid id { get; set; }
+    public Guid Id { get; set; }
     public string name { get; set; }
     public string description { get; set; }
     public Guid? ParentCategoryId { get; set; }
@@ -11,4 +13,5 @@ public class ProductDTO
     public int quantity { get; set; }
     public string[] images { get; set; }
     public IFormFile[] imagefiles { get; set; }
+    public List<DiscountEvent> DiscountEvents { get; set; }
 }

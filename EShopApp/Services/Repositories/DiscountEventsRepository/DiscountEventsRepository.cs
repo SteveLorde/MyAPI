@@ -66,7 +66,7 @@ class DiscountEventsRepository : IDiscountEventsRepository
         //2-create new joint ProductDiscounts for each product in eventdto
         foreach (var product in newstoadd.products)
         {
-            var queriedproduct = await _db.Products.FirstAsync(p => p.Id == product.id);
+            var queriedproduct = await _db.Products.FirstAsync(p => p.Id == product.Id);
             //ProductDiscount discountproduct = new ProductDiscount {DiscountEvent = discountEvent, Product = queriedproduct};
             //await _db.DiscountProducts.AddAsync(discountproduct);
         }

@@ -21,10 +21,6 @@ public class EShopCustomSeeding
             Event.Products.AddRange([product1,product2]);
             await _db.SaveChangesAsync();
         }
-        else
-        {
-            return;
-        }
     }
     
 

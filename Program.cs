@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using MyAPI.Data;
+using MyAPI.EShopApp.Services;
 using MyAPI.ForumApp.Data;
 using MyAPI.Services;
 using MyAPI.Services.AutoMapper;
@@ -29,6 +30,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 });
 
 builder.Services.AddServices();
+builder.Services.AddEShopServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
