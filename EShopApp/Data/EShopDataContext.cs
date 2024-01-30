@@ -57,6 +57,7 @@ public class EShopDataContext : DbContext
             );
         
         /*
+         //USING CUSTOM EXTERNAL DATA SEEDING
         modelBuilder.Entity<ProductDiscount>().HasNoKey().HasData(
             new ProductDiscount {DiscountEventId = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), ProductId = Guid.Parse("4eaf8297-449c-4aea-a656-a92b8730a201")},
             new ProductDiscount {DiscountEventId = Guid.Parse("0d8b8ff5-db08-4ee0-ae55-dd0267116b5d"), ProductId = Guid.Parse("b199f9b1-cf03-4990-876e-492df1cf69d1")}
@@ -73,6 +74,7 @@ public class EShopDataContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<DiscountEvent> DiscountEvents { get; set; }
+    //USING AUTOMATIC GENERATED JOINT TABLE through (m-to-m relation) property in classes
     //public DbSet<ProductDiscount> ProductDiscounts  { get; set;}
     public DbSet<PurchaseLog> PurchaseLogs { get; set; }
     public DbSet<ParentCategory> ParentCategories { get; set; }
