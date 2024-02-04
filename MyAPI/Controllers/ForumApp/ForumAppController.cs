@@ -84,7 +84,16 @@ public class ForumAppController : ControllerBase
     [HttpPost("threads/AddThread")]
     public async Task<bool> AddPost(AddThreadRequestDTO threadtoadd)
     {
-        return await _threadsservice.AddThread(threadtoadd);
+        string userid = HttpContext.User.FindFirst("userid").Value;
+        bool userchecked =  _dataservice.GetUser(userid).IsCompletedSuccessfully;
+        if (userchecked)
+        {
+            return await _threadsservice.AddThread(threadtoadd);
+        }
+        else
+        {
+            return false;
+        }
     }
     
     //Posts
@@ -93,7 +102,16 @@ public class ForumAppController : ControllerBase
     [HttpPost("AddPost")]
     public async Task<bool> AddPost(AddPostRequestDTO posttoadd)
     {
-        return await _threadsservice.AddPost(posttoadd);
+        string userid = HttpContext.User.FindFirst("userid").Value;
+        bool userchecked = _dataservice.GetUser(userid).IsCompletedSuccessfully;
+        if (userchecked)
+        {
+            return await _threadsservice.AddPost(posttoadd);
+        }
+        else
+        {
+            return false;
+        }
     }
     
     //Users

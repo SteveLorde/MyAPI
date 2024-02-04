@@ -26,6 +26,11 @@ class ThreadsService : IThreadsService
     {
         var queriedsubcats = await _db.forumapp_subcategories.Include(subcat => subcat.threads).ThenInclude(t => t.posts).ThenInclude(p => p.userposter).Include(s => s.threads).ThenInclude(t => t.userowner).FirstAsync(subcat => subcat.Id == Guid.Parse(subcatid));
         SubCategoryResponseDTO subcatresponse = _mapper.Map<SubCategoryResponseDTO>(queriedsubcats);
+        foreach (var thread in subcatresponse.threads)
+        {
+            thread.numofposts = thread.posts.Count;
+            thread.lastpost = thread.posts.Last();
+        }
         return subcatresponse;
     }
 
