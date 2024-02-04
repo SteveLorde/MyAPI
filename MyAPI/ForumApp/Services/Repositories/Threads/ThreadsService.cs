@@ -26,36 +26,33 @@ class ThreadsService : IThreadsService
     {
         var queriedsubcats = await _db.forumapp_subcategories.Include(subcat => subcat.threads).ThenInclude(t => t.posts).ThenInclude(p => p.userposter).Include(s => s.threads).ThenInclude(t => t.userowner).FirstAsync(subcat => subcat.Id == Guid.Parse(subcatid));
         SubCategoryResponseDTO subcatresponse = _mapper.Map<SubCategoryResponseDTO>(queriedsubcats);
-        /*
-        foreach (var thread in queriedsubcats.threads)
-        {
-            ThreadResponseDTO threaddto = _mapper.Map<ThreadResponseDTO>(thread);
-            threaddto.lastpost = _mapper.Map<PostResponseDTO>(thread.posts.Last());
-            subcatresponse.threads.Add(threaddto);
-        }
-        */
         return subcatresponse;
     }
 
     public async Task<ThreadResponseDTO> GetThread(string threadid)
     {
         var queriedthread = await _db.forumapp_threads.Include(t => t.posts).ThenInclude(p => p.userposter).FirstAsync(t => t.Id == Guid.Parse(threadid));
-        ThreadResponseDTO thread = new ThreadResponseDTO();
-        //DeSerialize POSTS DELTAS
-        foreach (var post in queriedthread.posts)
-        {
-            PostResponseDTO postresponse = _mapper.Map<PostResponseDTO>(post);
-            UserResponseDTO userresponse = _mapper.Map<UserResponseDTO>(post.userposter);
-        }
+        queriedthread.posts.OrderBy(p => p.ordernum);
+        queriedthread.numofposts = queriedthread.posts.Count;
         ThreadResponseDTO threadResponse = _mapper.Map<ThreadResponseDTO>(queriedthread);
         return threadResponse;
     }
 
-    public async Task<bool> AddThread(string userid, AddThreadRequestDTO threadtoadd)
+    public async Task<bool> AddThread(AddThreadRequestDTO threadtoadd)
     {
         var subcategory = await _db.forumapp_subcategories.Include(s => s.threads).FirstAsync(s => s.Id == threadtoadd.subcategoryid);
         Thread newthread = _mapper.Map<Thread>(threadtoadd);
+        newthread.posts[0].ordernum = 1;
         subcategory.threads.Add(newthread);
+        await _db.SaveChangesAsync();
+        return true;
+    }
+    public async Task<bool> AddPost(AddPostRequestDTO posttoadd)
+    {
+        var thread = await _db.forumapp_threads.Include(t => t.posts).FirstAsync(t => t.Id == posttoadd.threadid);
+        Post newpost = _mapper.Map<Post>(posttoadd);
+        newpost.ordernum = thread.posts.Last().ordernum + 1;
+        thread.posts.Add(newpost);
         await _db.SaveChangesAsync();
         return true;
     }

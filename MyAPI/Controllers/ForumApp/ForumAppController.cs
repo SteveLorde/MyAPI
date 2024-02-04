@@ -84,18 +84,16 @@ public class ForumAppController : ControllerBase
     [HttpPost("threads/AddThread")]
     public async Task<bool> AddPost(AddThreadRequestDTO threadtoadd)
     {
-        string userid = HttpContext.User.FindFirst("userid").Value;
-        return await _threadsservice.AddThread(userid, threadtoadd);
+        return await _threadsservice.AddThread(threadtoadd);
     }
     
     //Posts
     //-------------------------
     [Authorize]
-    [HttpPost("posts/AddPost")]
+    [HttpPost("AddPost")]
     public async Task<bool> AddPost(AddPostRequestDTO posttoadd)
     {
-        string userid = HttpContext.User.FindFirst("userid").Value;
-        return await _dataservice.AddPost(userid, posttoadd);
+        return await _threadsservice.AddPost(posttoadd);
     }
     
     //Users

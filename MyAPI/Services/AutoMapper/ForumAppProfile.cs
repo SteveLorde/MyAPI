@@ -24,7 +24,8 @@ public class ForumAppProfile : Profile
         //DTO TO MODEL
         CreateMap<AddPostRequestDTO,Post>();
         CreateMap<AddThreadRequestDTO,Thread>();
-        
+        CreateMap<RegisterRequestDTO, UserRequestDTO>();
+
     }
     
 }

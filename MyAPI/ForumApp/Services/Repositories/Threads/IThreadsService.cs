@@ -7,5 +7,6 @@ public interface IThreadsService
 {
     public Task<SubCategoryResponseDTO> GetSubCategoryThreads(string subcatid);
     public Task<ThreadResponseDTO> GetThread(string threadid);
-    public Task<bool> AddThread(string userid, AddThreadRequestDTO threadtoadd);
+    public Task<bool> AddThread(AddThreadRequestDTO threadtoadd);
+    public Task<bool> AddPost(AddPostRequestDTO posttoadd);
 }

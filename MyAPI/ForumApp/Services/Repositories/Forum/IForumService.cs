@@ -10,6 +10,6 @@ public interface IForumService : IGenericRepository<Thread>
 {
     public Task<List<CategoryResponseDTO>> GetMainCategories();
 
-    public Task<bool> AddPost(string userid, AddPostRequestDTO posttoadd);
+
     public Task<UserResponseDTO> GetUser(string userid);
 }

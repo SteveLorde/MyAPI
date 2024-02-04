@@ -26,7 +26,6 @@ class ForumService : GenericRepository<Thread>, IForumService
             CategoryResponseDTO catresponse = _mapper.Map<CategoryResponseDTO>(cat);
             categoriesresponse.Add(catresponse);
         }
-
         foreach (var catresponse in categoriesresponse)
         {
             foreach (var subcat in catresponse.subcategories)
@@ -34,18 +33,11 @@ class ForumService : GenericRepository<Thread>, IForumService
                 subcat.numofthreads = subcat.threads.Count;
             }
         }
-        categoriesresponse.OrderByDescending(cat => cat.orderingid);
+        categoriesresponse.OrderBy(cat => cat.orderingid);
         return categoriesresponse;
     }
 
-    public async Task<bool> AddPost(string userid, AddPostRequestDTO posttoadd)
-    {
-        var thread = await _db.forumapp_threads.Include(t => t.posts).FirstAsync(t => t.Id == posttoadd.threadid);
-        Post newpost = _mapper.Map<Post>(posttoadd);
-        thread.posts.Add(newpost);
-        await _db.SaveChangesAsync();
-        return true;
-    }
+
 
     public async Task<UserResponseDTO> GetUser(string userid)
     {

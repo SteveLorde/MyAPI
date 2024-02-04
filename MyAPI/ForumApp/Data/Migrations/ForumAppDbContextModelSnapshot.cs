@@ -74,6 +74,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ordernum")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ThreadId");
@@ -89,7 +92,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 1
                         },
                         new
                         {
@@ -97,7 +101,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 1
                         },
                         new
                         {
@@ -105,7 +110,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 1
                         },
                         new
                         {
@@ -113,7 +119,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 2
                         },
                         new
                         {
@@ -121,7 +128,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 2
                         },
                         new
                         {
@@ -129,7 +137,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 2
                         },
                         new
                         {
@@ -137,7 +146,8 @@ namespace MyAPI.ForumApp.Data.Migrations
                             ThreadId = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             UserId = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
                             body = "Test Post",
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local)
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            ordernum = 3
                         });
                 });
 
@@ -235,7 +245,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("d9374b25-64b3-4901-ad55-8a47d3e54275"),
                             SubCategoryId = new Guid("cefe05d1-5747-4bfc-acb2-8f0d0cadcaf3"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         },
@@ -244,7 +254,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("25fc63f8-9b86-48c2-a75d-40c4f357c1e7"),
                             SubCategoryId = new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         },
@@ -253,7 +263,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                             Id = new Guid("8e51677c-37bb-4658-90a5-45a00bf79880"),
                             SubCategoryId = new Guid("e008fb3e-bf09-4918-8f53-8e71a1a8d0e6"),
                             UserId = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            date = new DateTime(2024, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             numofposts = 2,
                             title = "thread 1"
                         });
@@ -296,9 +306,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                         new
                         {
                             Id = new Guid("f36d69a4-9c09-4c08-9da4-a315d2093385"),
-                            date = new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(7931),
+                            date = new DateTime(2024, 2, 4, 11, 4, 20, 566, DateTimeKind.Local).AddTicks(7184),
                             email = "testuser1@gmail.com",
-                            hashedpassword = "DOQxmilHnXarEHYXaaiXQg==.ODzqtIkcvQSSrwwhe66nH14eKH4vNTX26MSAJS/Zpg4=",
+                            hashedpassword = "t8Se3Bwb3HyAZnKSZUrR5g==.qAu6yEy7DnRcgsP3tmXJwRyyph7S1x6yZyKRv59C6WU=",
                             profileimage = "",
                             username = "testuser1",
                             usertype = "user"
@@ -306,9 +316,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                         new
                         {
                             Id = new Guid("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"),
-                            date = new DateTime(2024, 1, 15, 0, 41, 46, 155, DateTimeKind.Local).AddTicks(8084),
+                            date = new DateTime(2024, 2, 4, 11, 4, 20, 566, DateTimeKind.Local).AddTicks(7248),
                             email = "testuser2@gmail.com",
-                            hashedpassword = "5gNo1HxL3K2wYom1YchxmQ==.+R5V3wwutk8ggt8WeZL3TNgwX4Flq8Fq7eoW1BB83zk=",
+                            hashedpassword = "yPVGYTBCaC9HZDu40X62Xg==.5B6PvT5n1u+fblAr0i4yx6dOMa9Oz4/WhUOMaApGFQk=",
                             profileimage = "",
                             username = "testuser2",
                             usertype = "user"

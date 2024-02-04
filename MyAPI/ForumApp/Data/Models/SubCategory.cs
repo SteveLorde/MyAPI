@@ -1,4 +1,6 @@
-﻿namespace MyAPI.ForumApp.Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MyAPI.ForumApp.Data.Models;
 
 public class SubCategory
 {
@@ -7,5 +9,4 @@ public class SubCategory
     public Guid CategoryId { get; set; }
     public Category category { get; set; }
     public List<Thread> threads { get; set; }
-    //public int numofthreads { get; set; }
 }

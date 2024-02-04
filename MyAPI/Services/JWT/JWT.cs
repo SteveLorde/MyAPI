@@ -41,8 +41,8 @@ class JWT : IJWT
         var tokendata = new JwtSecurityToken(
             claims: claims,
             issuer: $"{baseUrl}",
-            audience: "",
-            expires: DateTime.Now.AddDays(2),
+            //audience: "",
+            expires: DateTime.Now.AddDays(6),
             signingCredentials: cred
         );
         var jwt = new JwtSecurityTokenHandler().WriteToken(tokendata);

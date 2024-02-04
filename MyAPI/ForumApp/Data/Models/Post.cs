@@ -6,7 +6,7 @@ namespace MyAPI.ForumApp.Data.Models;
 public class Post : IEntity
 {
     public Guid Id { get; set; }
-
+    public int ordernum { get; set; }
     [Column(TypeName = "json")]
     public string body { get; set; }
     public Guid UserId { get; set; }
