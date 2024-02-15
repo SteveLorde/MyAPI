@@ -28,7 +28,7 @@ public class ForumAppDbContext : DbContext
     {
         ForumDataSeeder.SeedData(modelBuilder);
         modelBuilder.Entity<User>().HasData(
-            new User { Id = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"),username = "testuser1", hashedpassword = returnhashedpassword("1234") ,date = DateTime.Now, profileimage = "", usertype = "user", email = "testuser1@gmail.com"},
+            new User { Id = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"),username = "testuser1", hashedpassword = returnhashedpassword("1234") ,date = DateTime.Now, profileimage = "profilepic.jpg", usertype = "user", email = "testuser1@gmail.com"},
             new User { Id = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), username = "testuser2", hashedpassword = returnhashedpassword("1234") ,date = DateTime.Now, profileimage = "", usertype = "user", email = "testuser2@gmail.com"}
             );
     }

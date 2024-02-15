@@ -21,10 +21,8 @@ public class PostsTest
     public async void AddPost()
     {
         var postbody = " {\"ops\":[{\"insert\":\"xxxxxxx\"},{\"attributes\":{\"bold\":true},\"insert\":\"XXXX\"},{\"insert\":\"\\n\"}]} ";
-        AddPostRequestDTO newpost = new AddPostRequestDTO { threadid = Guid.Parse("25FC63F8-9B86-48C2-A75D-40C4F357C1E7"), userid = Guid.Parse("CB89BDB8-348A-4AF4-B837-8CAA71BD7FB0"), body = postbody };
-        string jsondata = JsonConvert.SerializeObject(newpost);
-        var httpcontent = new StringContent(jsondata, Encoding.UTF8, "application/json");
-        var response = await  _httpClient.PostAsync("http://localhost:5010/ForumApp/AddPost", httpcontent).Result.Content.ReadAsStringAsync();
+        AddPostRequestDTO newpost = new AddPostRequestDTO { ThreadId = Guid.Parse("25FC63F8-9B86-48C2-A75D-40C4F357C1E7"), UserId = Guid.Parse("CB89BDB8-348A-4AF4-B837-8CAA71BD7FB0"), Body = postbody };
+        var response = await  _httpClient.PostAsJsonAsync("http://localhost:5010/ForumApp/AddPost", newpost).Result.Content.ReadAsStringAsync();
         _testOutputHelper.WriteLine("response: " + response);
     }
     

@@ -14,17 +14,20 @@ using MyAPI.Services.Startup;
 using IStartup = MyAPI.Services.Startup.IStartup;
 
 var builder = WebApplication.CreateBuilder(args);
-var url = 
 
 builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
+    options.RequireHttpsMetadata = false;
+    //options.Audience = "http://localhost:4200";
+    //options.Authority = "http://localhost:5010";
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateLifetime = true,
         ValidateAudience = false,
         ValidateIssuer = true,
+        ValidIssuer = "http://localhost:5010",
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
@@ -71,3 +74,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+

@@ -77,7 +77,6 @@ class Authentication : IAuthentication
         var extractedhashedpass = extractedsavedpassword[1];
         //2-generate hashed password with given salt
         var passwordtotest = _hashservice.HashPasswordWithGivenSalt(passwordtoverify, extractedsalt);
-        Console.WriteLine("hashed password to test is: " + passwordtotest + "  VERSUS  " + extractedhashedpass);
         //3-compare
         if (passwordtotest == extractedhashedpass)
         {

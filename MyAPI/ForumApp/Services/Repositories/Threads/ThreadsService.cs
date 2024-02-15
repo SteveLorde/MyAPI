@@ -54,7 +54,7 @@ class ThreadsService : IThreadsService
     }
     public async Task<bool> AddPost(AddPostRequestDTO posttoadd)
     {
-        var thread = await _db.forumapp_threads.Include(t => t.posts).FirstAsync(t => t.Id == posttoadd.threadid);
+        var thread = await _db.forumapp_threads.Include(t => t.posts).FirstAsync(t => t.Id == posttoadd.ThreadId);
         Post newpost = _mapper.Map<Post>(posttoadd);
         newpost.ordernum = thread.posts.Last().ordernum + 1;
         thread.posts.Add(newpost);

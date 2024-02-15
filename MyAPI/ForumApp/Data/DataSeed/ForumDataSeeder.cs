@@ -79,44 +79,44 @@ public static class ForumDataSeeder
         modelBuilder.Entity<Post>().HasData(
             new Post
             {
-                Id = Guid.Parse("31a43a68-1c17-44e0-9ca7-aa0226b68eee"), body = "Test Post",
-                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1, date = DateTime.Today,
+                Id = Guid.Parse("31a43a68-1c17-44e0-9ca7-aa0226b68eee"), Body = "Test Post",
+                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1, Date = DateTime.Today,
                 ThreadId = Guid.Parse("d9374b25-64b3-4901-ad55-8a47d3e54275")
             },
             new Post
             {
-                Id = Guid.Parse("582fb677-681f-46db-8327-5c25e835845f"), body = "Test Post",
-                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1,date = DateTime.Today,
+                Id = Guid.Parse("582fb677-681f-46db-8327-5c25e835845f"), Body = "Test Post",
+                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1,Date = DateTime.Today,
                 ThreadId = Guid.Parse("25fc63f8-9b86-48c2-a75d-40c4f357c1e7")
             },
             new Post
             {
-                Id = Guid.Parse("bd936dff-86e8-49bb-85ce-3ad6bea81428"), body = "Test Post",
-                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1,date = DateTime.Today,
+                Id = Guid.Parse("bd936dff-86e8-49bb-85ce-3ad6bea81428"), Body = "Test Post",
+                UserId = Guid.Parse("f36d69a4-9c09-4c08-9da4-a315d2093385"), userposter = null, ordernum = 1,Date = DateTime.Today,
                 ThreadId = Guid.Parse("8e51677c-37bb-4658-90a5-45a00bf79880")
             },
             new Post
             {
-                Id = Guid.Parse("272f7784-81ed-4961-b811-afcd1e349caf"), body = "Test Post",
-                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,date = DateTime.Today,
+                Id = Guid.Parse("272f7784-81ed-4961-b811-afcd1e349caf"), Body = "Test Post",
+                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,Date = DateTime.Today,
                 ThreadId = Guid.Parse("8e51677c-37bb-4658-90a5-45a00bf79880")
             },
             new Post
             {
-                Id = Guid.Parse("862042a9-b136-4153-a63b-1518ccfc5411"), body = "Test Post",
-                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,date = DateTime.Today,
+                Id = Guid.Parse("862042a9-b136-4153-a63b-1518ccfc5411"), Body = "Test Post",
+                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,Date = DateTime.Today,
                 ThreadId = Guid.Parse("25fc63f8-9b86-48c2-a75d-40c4f357c1e7")
             },
             new Post
             {
-                Id = Guid.Parse("138670af-28f1-4f35-8b3d-ea2f471e8aa1"), body = "Test Post",
-                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,date = DateTime.Today,
+                Id = Guid.Parse("138670af-28f1-4f35-8b3d-ea2f471e8aa1"), Body = "Test Post",
+                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 2,Date = DateTime.Today,
                 ThreadId = Guid.Parse("d9374b25-64b3-4901-ad55-8a47d3e54275")
             },
             new Post
             {
-                Id = Guid.Parse("4f59aba9-1628-4478-9657-c5ed7e46c38e"), body = "Test Post",
-                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 3,date = DateTime.Today,
+                Id = Guid.Parse("4f59aba9-1628-4478-9657-c5ed7e46c38e"), Body = "Test Post",
+                UserId = Guid.Parse("cb89bdb8-348a-4af4-b837-8caa71bd7fb0"), userposter = null, ordernum = 3,Date = DateTime.Today,
                 ThreadId = Guid.Parse("8e51677c-37bb-4658-90a5-45a00bf79880")
             }
         );

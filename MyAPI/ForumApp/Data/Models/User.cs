@@ -3,7 +3,7 @@ using MyAPI.ForumApp.Services.Repositories;
 
 namespace MyAPI.ForumApp.Data.Models;
 
-public class User : IEntity
+public class User
 {
     public Guid Id { get; set; }
     public string username { get; set; }

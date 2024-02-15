@@ -45,6 +45,7 @@ public class ForumAppController : ControllerBase
     //-----------------------
     
     [HttpPost("authentication/login")]
+    [Produces("application/json")]
     public async Task<string> Login(LoginRequestDTO loginreq)
     {
         return await _authservice.Login(loginreq);
@@ -57,7 +58,8 @@ public class ForumAppController : ControllerBase
     }
     
     [Authorize]
-    [HttpGet("getactiveuserinfo")]
+    [HttpGet("authentication/getactiveuserinfo")]
+    [Produces("application/json")]
     public async Task<User> GetActiveUserInfo()
     {
         //VALIDATE TOKEN AUTOMATICALLY

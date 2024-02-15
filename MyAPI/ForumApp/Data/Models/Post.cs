@@ -3,15 +3,15 @@ using MyAPI.ForumApp.Services.Repositories;
 
 namespace MyAPI.ForumApp.Data.Models;
 
-public class Post : IEntity
+public class Post
 {
     public Guid Id { get; set; }
     public int ordernum { get; set; }
     [Column(TypeName = "json")]
-    public string body { get; set; }
+    public string Body { get; set; }
     public Guid UserId { get; set; }
     public User userposter { get; set; }
-    public DateTime date { get; set; }
+    public DateTime Date { get; set; }
     public Guid ThreadId { get; set; }
     public Thread thread { get; set; }
     

@@ -4,8 +4,9 @@ namespace MyAPI.ForumApp.Data.DTOs.Requests;
 
 public class AddPostRequestDTO
 {
-    public Guid userid { get; set; }
+    public Guid UserId { get; set; }
     [JsonPropertyName("body")]
-    public string body { get; set; }
-    public Guid threadid { get; set; }
+    public string Body { get; set; }
+    public Guid ThreadId { get; set; }
+    public DateTime Date { get; set; }
 }

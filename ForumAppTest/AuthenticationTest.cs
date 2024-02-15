@@ -21,9 +21,7 @@ public class AuthenticationTest
     public async void Login()
     {
         LoginRequestDTO loginreq = new LoginRequestDTO { username = "testuser1", password = "1234" };
-        string jsondata = JsonConvert.SerializeObject(loginreq);
-        var httpcontent = new StringContent(jsondata, Encoding.UTF8, "application/json");
-        var response = await  _httpClient.PostAsync("http://localhost:5010/ForumApp/authentication/login", httpcontent).Result.Content.ReadAsStringAsync();
+        var response = await  _httpClient.PostAsJsonAsync("http://localhost:5010/ForumApp/authentication/login", loginreq).Result.Content.ReadAsStringAsync();
         _testOutputHelper.WriteLine(response);
     }
 
