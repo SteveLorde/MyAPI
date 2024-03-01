@@ -8,11 +8,11 @@ public class Product
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public Guid? CategoryId { get; set; }
-    public Category Category { get; set; }
+    public Guid SubCategoryId { get; set; }
+    public SubCategory SubCategory { get; set; }
     public int Price { get; set; }
     public int? Barcode { get; set; }
-    public int StoreQuantity { get; set; }
+    public int Quantity { get; set; }
     public DateOnly AddedOn { get; set; }
     public string[] Images { get; set; }
     public int Sells { get; set; }

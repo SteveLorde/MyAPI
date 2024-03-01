@@ -23,13 +23,13 @@ public class WarehouseController : Controller
     }
     
     [HttpGet("getmaincategories")]
-    public async Task<List<ParentCategory>> GetParentCategories()
+    public async Task<List<MainCategory>> GetMainCategories()
     {
         return await _productsrepo.GetParentCategories();
     }
     
     [HttpGet("getsubcategories/{patid}")]
-    public async Task<List<Category>> GetCategories(string patid)
+    public async Task<List<SubCategory>> GetSubCategories(string patid)
     {
         return await _productsrepo.GetCategories(patid);
     }

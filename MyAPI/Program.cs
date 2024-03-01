@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using MyAPI.Data;
 using MyAPI.EShopApp.Services;
 using MyAPI.ForumApp.Data;
+using MyAPI.ForumApp.Services;
 using MyAPI.Services;
 using MyAPI.Services.AutoMapper;
 using MyAPI.Services.JWT;
@@ -27,7 +28,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         ValidateLifetime = true,
         ValidateAudience = false,
         ValidateIssuer = true,
-        ValidIssuer = "http://localhost:5010",
+        ValidIssuer = builder.Configuration["URL"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
     };
@@ -35,6 +36,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 
 builder.Services.AddServices();
 builder.Services.AddEShopServices();
+builder.Services.AddForumAppServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -73,5 +75,13 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
+if (app.Environment.IsDevelopment())
+{
+    app.Run();
+}
+else
+{
+    app.Run(builder.Configuration["URL"]);
+}
+
 

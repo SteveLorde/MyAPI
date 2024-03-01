@@ -11,7 +11,7 @@ using MyAPI.EShopApp.Data;
 namespace MyAPI.EShopApp.Data.Migrations
 {
     [DbContext(typeof(EShopDataContext))]
-    [Migration("20240121181038_Initial")]
+    [Migration("20240219230353_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -33,70 +33,6 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.HasIndex("ProductsId");
 
                     b.ToTable("DiscountEventProduct");
-                });
-
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ParentCategoryId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"),
-                            ParentCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Computer Hardware"
-                        },
-                        new
-                        {
-                            Id = new Guid("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"),
-                            ParentCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Mobiles and Accesories"
-                        },
-                        new
-                        {
-                            Id = new Guid("3ac2239f-3d70-4da0-b81e-bda272847e7c"),
-                            ParentCategoryId = new Guid("733d2eda-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Kitchen and Appliances"
-                        },
-                        new
-                        {
-                            Id = new Guid("ef39fd90-d4fd-46aa-95bf-23672f549756"),
-                            ParentCategoryId = new Guid("6d8e2cc8-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Vegetables"
-                        },
-                        new
-                        {
-                            Id = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"),
-                            ParentCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Video Games"
-                        },
-                        new
-                        {
-                            Id = new Guid("bb2dc742-a510-4a83-a0fa-e454df3a559c"),
-                            ParentCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Tablets"
-                        },
-                        new
-                        {
-                            Id = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199"),
-                            ParentCategoryId = new Guid("780fcde6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Face and Hair"
-                        });
                 });
 
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.DiscountEvent", b =>
@@ -175,13 +111,13 @@ namespace MyAPI.EShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.ParentCategory", b =>
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.MainCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -193,22 +129,22 @@ namespace MyAPI.EShopApp.Data.Migrations
                         new
                         {
                             Id = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Electronics"
+                            Name = "Electronics"
                         },
                         new
                         {
                             Id = new Guid("6d8e2cc8-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Groceries"
+                            Name = "Groceries"
                         },
                         new
                         {
                             Id = new Guid("733d2eda-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Home and Garden"
+                            Name = "Home and Garden"
                         },
                         new
                         {
                             Id = new Guid("780fcde6-9c0f-11ee-8c90-0242ac120002"),
-                            name = "Beauty and Personal Care"
+                            Name = "Beauty and Personal Care"
                         });
                 });
 
@@ -223,9 +159,6 @@ namespace MyAPI.EShopApp.Data.Migrations
 
                     b.Property<int?>("Barcode")
                         .HasColumnType("INTEGER");
-
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -242,15 +175,23 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
+                    b.Property<Guid?>("PurchaseLogId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Sells")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("StoreQuantity")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("SubCategoryId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("PurchaseLogId");
+
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Products");
 
@@ -259,97 +200,97 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("4eaf8297-449c-4aea-a656-a92b8730a201"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "PC Build 2024",
                             Price = 500,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6")
                         },
                         new
                         {
                             Id = new Guid("4fe905ac-63ae-4e9c-a10f-b6379b594c18"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Face Cosmetic Kit",
                             Price = 74,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
                         new
                         {
                             Id = new Guid("45ee830f-a1f3-44ad-8112-982ef324dab4"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Hair Care Kit",
                             Price = 200,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
                         new
                         {
                             Id = new Guid("710df7a2-9cf9-4b80-89d5-20be76a621af"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Body Care Kit",
                             Price = 1000,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
                         new
                         {
                             Id = new Guid("4679e631-8273-49cd-91a6-fae714ea9d73"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Videogame",
                             Price = 500,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e")
                         },
                         new
                         {
                             Id = new Guid("b199f9b1-cf03-4990-876e-492df1cf69d1"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Playstation 5",
                             Price = 500,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e")
                         },
                         new
                         {
                             Id = new Guid("f741ceca-8eed-40a6-8706-3181886a2e23"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Android Tablet",
                             Price = 500,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("92c17ce6-92b8-4515-9fc3-e38fcc51d83e")
                         },
                         new
                         {
                             Id = new Guid("f4411dd9-d96a-4104-9d33-30f7beb3ad05"),
                             AddedOn = new DateOnly(1, 1, 1),
-                            CategoryId = new Guid("3ac2239f-3d70-4da0-b81e-bda272847e7c"),
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Air Fryer",
                             Price = 500,
+                            Quantity = 0,
                             Sells = 0,
-                            StoreQuantity = 0
+                            SubCategoryId = new Guid("3ac2239f-3d70-4da0-b81e-bda272847e7c")
                         });
                 });
 
@@ -359,25 +300,90 @@ namespace MyAPI.EShopApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<DateTime>("CheckoutOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Extrafees")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsAccepted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Totalamount")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("accepted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("datetime")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("PurchaseLogs");
+                });
+
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("MainCategoryId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6"),
+                            MainCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Computer Hardware"
+                        },
+                        new
+                        {
+                            Id = new Guid("92c17ce6-92b8-4515-9fc3-e38fcc51d83e"),
+                            MainCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Mobiles and Accesories"
+                        },
+                        new
+                        {
+                            Id = new Guid("3ac2239f-3d70-4da0-b81e-bda272847e7c"),
+                            MainCategoryId = new Guid("733d2eda-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Kitchen and Appliances"
+                        },
+                        new
+                        {
+                            Id = new Guid("ef39fd90-d4fd-46aa-95bf-23672f549756"),
+                            MainCategoryId = new Guid("6d8e2cc8-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Vegetables"
+                        },
+                        new
+                        {
+                            Id = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e"),
+                            MainCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Video Games"
+                        },
+                        new
+                        {
+                            Id = new Guid("bb2dc742-a510-4a83-a0fa-e454df3a559c"),
+                            MainCategoryId = new Guid("5cd3afb6-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Tablets"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199"),
+                            MainCategoryId = new Guid("780fcde6-9c0f-11ee-8c90-0242ac120002"),
+                            Name = "Face and Hair"
+                        });
                 });
 
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.User", b =>
@@ -440,48 +446,56 @@ namespace MyAPI.EShopApp.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Category", b =>
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Product", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.ParentCategory", "ParentCategory")
-                        .WithMany("Categories")
-                        .HasForeignKey("ParentCategoryId")
+                    b.HasOne("MyAPI.EShopApp.Data.Models.PurchaseLog", null)
+                        .WithMany("Products")
+                        .HasForeignKey("PurchaseLogId");
+
+                    b.HasOne("MyAPI.EShopApp.Data.Models.SubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ParentCategory");
-                });
-
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Product", b =>
-                {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.PurchaseLog", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MyAPI.EShopApp.Data.Models.User", "User")
-                        .WithMany()
+                        .WithMany("PurchaseLogs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
-
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.ParentCategory", b =>
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
                 {
-                    b.Navigation("Categories");
+                    b.HasOne("MyAPI.EShopApp.Data.Models.MainCategory", "MainCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("MainCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MainCategory");
+                });
+
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.MainCategory", b =>
+                {
+                    b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.PurchaseLog", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.User", b =>
+                {
+                    b.Navigation("PurchaseLogs");
                 });
 #pragma warning restore 612, 618
         }

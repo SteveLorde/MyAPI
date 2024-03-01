@@ -34,24 +34,23 @@ class ProductsRepository : IProductsRepository
 
     public async Task<ProductDTO> GetProduct(string productid)
     {
-        var queriedproduct = await _db.Products.Include(p => p.DiscountEvents).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).FirstAsync(product => product.Id == Guid.Parse(productid));
-        //ProductDTO productresponse = _mapper.Map<ProductDTO>(queriedproduct);
+        var queriedproduct = await _db.Products.Include(p => p.DiscountEvents).Include(p => p.SubCategory).ThenInclude(subcat => subcat.MainCategory).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).FirstAsync(product => product.Id == Guid.Parse(productid));
         return queriedproduct;
     }
 
-    public async Task<List<ParentCategory>> GetParentCategories()
+    public async Task<List<MainCategory>> GetParentCategories()
     {
-        return await _db.ParentCategories.Include(parentcat => parentcat.Categories).ToListAsync();
+        return await _db.ParentCategories.Include(parentcat => parentcat.SubCategories).ToListAsync();
     }
 
-    public async Task<List<Category>> GetCategories(string maincategoryid)
+    public async Task<List<SubCategory>> GetCategories(string maincategoryid)
     {
-        return await _db.ParentCategories.Where(x => x.Id == Guid.Parse(maincategoryid) ).SelectMany(z => z.Categories).Include(a => a.ParentCategory).ToListAsync();
+        return await _db.ParentCategories.Where(x => x.Id == Guid.Parse(maincategoryid) ).SelectMany(z => z.SubCategories).Include(a => a.MainCategory).ToListAsync();
     }
 
     public async Task<List<ProductDTO>> GetProductsByCategory(string categoryid)
     {
-        var queriedproducts = await _db.Products.Where(x => x.Category.ParentCategoryId == Guid.Parse(categoryid) || x.CategoryId == Guid.Parse(categoryid) ).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
+        var queriedproducts = await _db.Products.Where(product => product.SubCategory.MainCategoryId == Guid.Parse(categoryid) || product.SubCategoryId == Guid.Parse(categoryid) ).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
         return queriedproducts;
     }
     
@@ -82,11 +81,11 @@ class ProductsRepository : IProductsRepository
     
     public async Task AddProduct(ProductDTO producttoadd)
     {
-        Product newproduct = new Product { Id = Guid.NewGuid(),Name = producttoadd.name , Description = producttoadd.description, CategoryId = producttoadd.SubCategoryId, Price = producttoadd.price, AddedOn = new DateOnly(2024,1,1)};
+        Product newproduct = new Product { Id = Guid.NewGuid(),Name = producttoadd.Name , Description = producttoadd.Description, SubCategoryId = producttoadd.SubCategoryId, Price = producttoadd.Price, AddedOn = new DateOnly(2024,1,1)};
         await _db.Products.AddAsync(newproduct);
         var productfoldertocreate = Path.Combine(_hostingenv.ContentRootPath, "Storage", "EShopApp", "Products", $"{newproduct.Id}", "Images");
         Directory.CreateDirectory(productfoldertocreate);
-        foreach (var imagefile in producttoadd.imagefiles)
+        foreach (var imagefile in producttoadd.Imagefiles)
         {
             Directory.CreateDirectory(productfoldertocreate); 
         }
@@ -96,7 +95,7 @@ class ProductsRepository : IProductsRepository
     public async Task<bool> CheckProduct(string productid)
     {
         Product product = await _db.Products.FirstAsync(p => p.Id == Guid.Parse(productid));
-        if (product.StoreQuantity > 0)
+        if (product.Quantity > 0)
         {
             return true;
         }

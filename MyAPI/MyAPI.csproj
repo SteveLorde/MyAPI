@@ -26,6 +26,7 @@
     <ItemGroup>
       <Folder Include="Data\Migrations\" />
       <Folder Include="Data\Models\" />
+      <Folder Include="EShopApp\Data\Migrations\" />
     </ItemGroup>
     
     <ItemGroup>
