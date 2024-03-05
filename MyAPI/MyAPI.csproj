@@ -37,6 +37,8 @@
       <Folder Include="Data\Migrations\" />
       <Folder Include="Data\Models\" />
       <Folder Include="EShopApp\Data\Migrations\" />
+      <Folder Include="obj\Debug\net8.0\refint\" />
+      <Folder Include="obj\Debug\net8.0\ref\" />
     </ItemGroup>
     
     <ItemGroup>
@@ -94,11 +96,20 @@
     </ItemGroup>
     
     <ItemGroup>
+      <Content Include="obj\Debug\net8.0\MyAPI.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net8.0\MyAPI.assets.cache" />
+      <Content Include="obj\Debug\net8.0\MyAPI.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net8.0\MyAPI.GeneratedMSBuildEditorConfig.editorconfig" />
       <Content Include="obj\Debug\net8.0\MyAPI.sourcelink.json" />
       <Content Include="obj\Debug\net8.0\staticwebassets.build.json" />
       <Content Include="obj\MyAPI.csproj.nuget.dgspec.json" />
+      <Content Include="obj\MyAPI.csproj.nuget.dgspec.json" />
+      <Content Include="obj\MyAPI.csproj.nuget.g.props" />
+      <Content Include="obj\MyAPI.csproj.nuget.g.targets" />
       <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
       <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\rider.project.restore.info" />
     </ItemGroup>
 
 </Project>

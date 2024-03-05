@@ -1,17 +1,10 @@
 using System.Text;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
-using MyAPI.Data;
 using MyAPI.EShopApp.Services;
-using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Services;
 using MyAPI.Services;
-using MyAPI.Services.AutoMapper;
-using MyAPI.Services.JWT;
-using MyAPI.Services.PasswordHash;
-using MyAPI.Services.Startup;
 using MyAPI.TheDailyBuyerApp.Services;
 using IStartup = MyAPI.Services.Startup.IStartup;
 
@@ -44,6 +37,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(type => type.ToString());
 });
+/*
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: "CorsPolicy", policyBuilder =>
@@ -51,6 +45,7 @@ builder.Services.AddCors(opt =>
         policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
+*/
 
 var app = builder.Build();
 
@@ -66,7 +61,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseStaticFiles(new StaticFileOptions
 {
@@ -75,6 +69,7 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/storage"
 });
 app.UseAuthentication();
+app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthorization();
 app.MapControllers();
 if (app.Environment.IsDevelopment())

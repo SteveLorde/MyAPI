@@ -18,13 +18,19 @@ public class StorageStartup : IStorageStartup
     {
         //General
         var storagefolder = Path.Combine(_webenv.ContentRootPath, "Storage");
-        Directory.CreateDirectory(storagefolder);
-        Console.WriteLine("craated general Storage folder");
+        if (!Directory.Exists(storagefolder))
+        {
+            Directory.CreateDirectory(storagefolder);
+            Console.WriteLine("craated general Storage folder");
+        }
         
         //Forum App
         var forumappstoragefolder = Path.Combine(_webenv.ContentRootPath, "Storage", "ForumApp");
-        Directory.CreateDirectory(forumappstoragefolder);
-        Console.WriteLine("craated ForumApp Storage folder");
+        if (!Directory.Exists(forumappstoragefolder))
+        {
+            Directory.CreateDirectory(forumappstoragefolder);
+            Console.WriteLine("craated ForumApp Storage folder");
+        }
         
         //Eshop App
         var scope1 = _serviceprovider.CreateScope();

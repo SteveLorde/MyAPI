@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.Data;
@@ -15,9 +16,10 @@ using Thread = MyAPI.ForumApp.Data.Models.Thread;
 
 namespace MyAPI.Controllers.ForumApp;
 
+
 [ApiController]
 [Route("ForumApp")]
-public class ForumAppController : ControllerBase
+public class ForumAppController : Controller
 {
     private readonly IForumService _dataservice;
     private readonly ForumAppDbContext _db;
