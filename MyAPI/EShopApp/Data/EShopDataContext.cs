@@ -16,8 +16,8 @@ public class EShopDataContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "EShopApp" ,"Data", "eshopdatabase.db");
-        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
+        //var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "EShopApp" ,"Data", "eshopdatabase.db");
+        optionsBuilder.UseSqlite($"Data Source=eshopdatabase.db");
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

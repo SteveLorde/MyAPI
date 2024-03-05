@@ -31,7 +31,8 @@ public class Startup : IStartup
         var scopedb = _serviceprovider.CreateScope();
         var servicescopedb = scopedb.ServiceProvider;
         var forumdbservice = servicescopedb.GetRequiredService<ForumAppDbContext>();
-        forumdbservice.Database.Migrate();
+        //forumdbservice.Database.Migrate();
+        forumdbservice.Database.EnsureCreated();
         
         //EShopApp
         var eshopscopedb = _serviceprovider.CreateScope();
@@ -40,4 +41,7 @@ public class Startup : IStartup
         eshopdbservice.Database.Migrate();
         _eShopCustomSeeding.SeedDiscountsProducts();
     }
+    
+    
+    
 }

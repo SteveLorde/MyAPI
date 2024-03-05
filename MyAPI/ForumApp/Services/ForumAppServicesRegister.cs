@@ -18,4 +18,5 @@ public static class ForumAppServicesRegister
         services.AddScoped<IAuthentication,ForumApp.Services.Authentication.Authentication>();
         services.AddScoped<IUsersRepository,UsersRepository>();
     }
+    
 }

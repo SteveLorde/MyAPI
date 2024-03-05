@@ -20,10 +20,10 @@ public class ForumAppDbContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "ForumApp" ,"Data", "database.db");
-        optionsBuilder.UseSqlite($"Data Source={webbasedconnectionstring}");
+        //var webbasedconnectionstring = Path.Combine(_hostenv.ContentRootPath, "ForumApp" ,"Data", "database.db");
+        optionsBuilder.UseSqlite($"Data Source=forumappdatabase.db");
     }
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ForumDataSeeder.SeedData(modelBuilder);

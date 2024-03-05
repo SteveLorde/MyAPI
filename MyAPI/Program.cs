@@ -12,6 +12,7 @@ using MyAPI.Services.AutoMapper;
 using MyAPI.Services.JWT;
 using MyAPI.Services.PasswordHash;
 using MyAPI.Services.Startup;
+using MyAPI.TheDailyBuyerApp.Services;
 using IStartup = MyAPI.Services.Startup.IStartup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 builder.Services.AddServices();
 builder.Services.AddEShopServices();
 builder.Services.AddForumAppServices();
+builder.Services.AddDailyBuyerAppServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -46,7 +48,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: "CorsPolicy", policyBuilder =>
     {
-        policyBuilder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+        policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
 

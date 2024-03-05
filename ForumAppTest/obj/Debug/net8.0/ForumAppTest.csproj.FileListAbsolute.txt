@@ -14,6 +14,7 @@ D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\Storage\EShopApp\Products\7
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\Storage\EShopApp\Products\b199f9b1-cf03-4990-876e-492df1cf69d1\Images\1.jpg
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\Storage\EShopApp\Products\f4411dd9-d96a-4104-9d33-30f7beb3ad05\Images\1.jpg
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\Storage\EShopApp\Products\f741ceca-8eed-40a6-8706-3181886a2e23\Images\1.jpg
+D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\Storage\ForumApp\Users\f36d69a4-9c09-4c08-9da4-a315d2093385\Images\profilepic.jpg
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\MyAPI.exe
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\testhost.exe
 D:\Apps\Projects\MyAPI\ForumAppTest\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
