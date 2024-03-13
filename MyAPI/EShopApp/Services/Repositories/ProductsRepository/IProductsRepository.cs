@@ -12,7 +12,7 @@ public interface IProductsRepository
     public Task<List<SubCategory>> GetCategories(string maincategoryid);
     public Task CreateAssetsFolders();
     public Task<List<ProductDTO>> GetProductsByCategory(string categoryid);
-    public Task AddProduct(ProductDTO producttoadd);
+    public Task<bool> AddProduct(ProductDTO producttoadd);
     public Task<bool> CheckProduct(string productid);
     public Task UpdateProduct(ProductDTO producttoupdate);
     public Task RemoveProduct(string productid);

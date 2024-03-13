@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Data.Models;
 using MyAPI.Services.JWT;
 using MyAPI.Services.JWT.DTO;
 using MyAPI.Services.PasswordHash;
@@ -58,7 +60,7 @@ class AuthService : IAuthService
 
     public async Task<UserDTO> GetUser(string userid)
     {
-        throw new NotImplementedException();
+        return await _db.Users.Include(user => user.PurchaseLogs).ProjectTo<UserDTO>(_mapper.ConfigurationProvider).FirstAsync(user => user.Id == Guid.Parse(userid));
     }
     
     private async Task<bool> VerifyPassword(string passwordtoverify, string hashedpassword)

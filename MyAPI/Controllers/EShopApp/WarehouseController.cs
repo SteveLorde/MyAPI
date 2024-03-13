@@ -55,7 +55,7 @@ public class WarehouseController : Controller
     [HttpPost("addproduct")]
     public async Task AddProduct(ProductDTO newproductrequest)
     { 
-        await _productsrepo.AddProduct(newproductrequest);
+        return await _productsrepo.AddProduct(newproductrequest);
     }
     
 }

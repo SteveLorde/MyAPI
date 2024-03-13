@@ -5,9 +5,6 @@ using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 
 namespace MyAPI.Controllers.EShopApp;
 
-/*
-[Authorize]
-*/
 [ApiController]
 [Route("eshop/events")]
 public class DiscountEventsController : Controller

@@ -79,7 +79,7 @@ class ProductsRepository : IProductsRepository
         }
     }
     
-    public async Task AddProduct(ProductDTO producttoadd)
+    public async Task<bool> AddProduct(ProductDTO producttoadd)
     {
         Product newproduct = new Product { Id = Guid.NewGuid(),Name = producttoadd.Name , Description = producttoadd.Description, SubCategoryId = producttoadd.SubCategoryId, Price = producttoadd.Price, AddedOn = new DateOnly(2024,1,1)};
         await _db.Products.AddAsync(newproduct);
@@ -90,6 +90,15 @@ class ProductsRepository : IProductsRepository
             Directory.CreateDirectory(productfoldertocreate); 
         }
         await _db.SaveChangesAsync();
+        var checkIfAdded = await _db.Products.AnyAsync(product => product.Id == newproduct.Id);
+        if (checkIfAdded)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public async Task<bool> CheckProduct(string productid)

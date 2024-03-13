@@ -66,7 +66,7 @@ public class EShopDataContext : DbContext
         
         modelBuilder.Entity<User>().HasData(
             new User
-            { Id = Guid.Parse("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"), username = "testuser", pass_salt = null, hashedpassword = null, usertype = "user", phonenumber = 123456789, email = "test@gmail.com",profileimage = "profile.jpg"}
+            { Id = Guid.Parse("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"), username = "testuser", pass_salt = "", hashedpassword = "", usertype = "user", phonenumber = 123456789, email = "test@gmail.com",profileimage = "profile.jpg"}
         );
         
     }

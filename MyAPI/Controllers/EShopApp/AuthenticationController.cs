@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyAPI.EShopApp.Data.DTOs;
 using MyAPI.EShopApp.Data.Models;
+using MyAPI.EShopApp.Services.Authentication;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
 namespace MyAPI.Controllers.EShopApp;
@@ -9,22 +11,33 @@ namespace MyAPI.Controllers.EShopApp;
 [Route("eshop/warehouse")]
 public class AuthenticationController : Controller
 {
-    
-    public AuthenticationController()
-    {
+    private readonly IAuthService _authService;
+    private readonly HttpContextAccessor _httpContextAccessor;
 
+    public AuthenticationController(IAuthService authService, HttpContextAccessor httpContextAccessor)
+    {
+        _authService = authService;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     [HttpPost("login")]
-    public async Task Login(LoginRequestDTO loginreq)
+    public async Task<string> Login(LoginRequestDTO loginreq)
     {
-        
+        return await _authService.Login(loginreq);
     }
     
     [HttpPost("register")]
-    public async Task Register(RegisterRequestDTO registerreq)
+    public async Task<bool> Register(RegisterRequestDTO registerreq)
     {
-        
+        return await _authService.Register(registerreq);
+    }
+
+    [Authorize]
+    [HttpGet]
+    public async Task<UserDTO> GetLoggedUserInfo()
+    {
+        string userId = _httpContextAccessor.HttpContext.User.FindFirst("userid").Value;
+        return await _authService.GetUser(userId);
     }
     
 }

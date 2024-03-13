@@ -26,4 +26,39 @@
       <ProjectReference Include="..\MyAPI\MyAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\net8.0\ForumAppTest.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net8.0\ForumAppTest.assets.cache" />
+      <Content Include="obj\Debug\net8.0\ForumAppTest.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net8.0\ForumAppTest.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\ForumAppTest.csproj.nuget.dgspec.json" />
+      <Content Include="obj\ForumAppTest.csproj.nuget.g.props" />
+      <Content Include="obj\ForumAppTest.csproj.nuget.g.targets" />
+      <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
+      <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\rider.project.model.nuget.info" />
+      <Content Include="obj\rider.project.restore.info" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Debug\net8.0\ForumAppTest.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net8.0\ForumAppTest.GlobalUsings.g.cs" />
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="obj\Debug\net8.0\refint\" />
+      <Folder Include="obj\Debug\net8.0\ref\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+    </ItemGroup>
+
 </Project>

@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 builder.Services.AddAuthorization();
+builder.Services.AddHttpsRedirection(opt => opt.HttpsPort = 443);
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
@@ -61,24 +62,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles(new StaticFileOptions
+app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+if (app.Environment.IsProduction())
 {
+    app.UseHttpsRedirection();
+}
+app.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider(
         Path.Combine(builder.Environment.ContentRootPath, "Storage")),
     RequestPath = "/storage"
 });
 app.UseAuthentication();
-app.UseCors(corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthorization();
 app.MapControllers();
-if (app.Environment.IsDevelopment())
-{
-    app.Run();
-}
-else
-{
-    app.Run(builder.Configuration["URL"]);
-}
+app.Run();
 
 
