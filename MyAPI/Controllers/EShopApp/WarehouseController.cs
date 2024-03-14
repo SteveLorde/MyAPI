@@ -27,6 +27,12 @@ public class WarehouseController : Controller
     {
         return await _productsrepo.GetParentCategories();
     }
+
+    [HttpGet("getsubcategory/{subcategoryid}")]
+    public async Task<SubCategoryDTO> GetSubCategory(string subcategoryid)
+    {
+        return await _productsrepo.GetSubCategory(subcategoryid);
+    }
     
     [HttpGet("getsubcategories/{patid}")]
     public async Task<List<SubCategory>> GetSubCategories(string patid)
@@ -53,7 +59,7 @@ public class WarehouseController : Controller
     }
 
     [HttpPost("addproduct")]
-    public async Task AddProduct(ProductDTO newproductrequest)
+    public async Task<bool> AddProduct(ProductDTO newproductrequest)
     { 
         return await _productsrepo.AddProduct(newproductrequest);
     }

@@ -9,6 +9,7 @@ public interface IProductsRepository
     public Task<ProductDTO> GetProduct(string productid);
     public Task<List<ProductDTO>> GetMostSelling();
     public Task<List<MainCategory>> GetParentCategories();
+    public Task<SubCategoryDTO> GetSubCategory(string subcategoryid);
     public Task<List<SubCategory>> GetCategories(string maincategoryid);
     public Task CreateAssetsFolders();
     public Task<List<ProductDTO>> GetProductsByCategory(string categoryid);

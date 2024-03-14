@@ -154,7 +154,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Property<DateOnly>("AddedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Barcode")
+                    b.Property<int>("Barcode")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -172,9 +172,6 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("PurchaseLogId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
@@ -186,8 +183,6 @@ namespace MyAPI.EShopApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PurchaseLogId");
-
                     b.HasIndex("SubCategoryId");
 
                     b.ToTable("Products");
@@ -197,11 +192,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("4eaf8297-449c-4aea-a656-a92b8730a201"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "PC Build 2024",
                             Price = 500,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("ec5e2a09-3785-4b4b-90e6-1353ddb5aee6")
                         },
@@ -209,11 +205,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("4fe905ac-63ae-4e9c-a10f-b6379b594c18"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Face Cosmetic Kit",
                             Price = 74,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
@@ -221,11 +218,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("45ee830f-a1f3-44ad-8112-982ef324dab4"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Hair Care Kit",
                             Price = 200,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
@@ -233,11 +231,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("710df7a2-9cf9-4b80-89d5-20be76a621af"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Body Care Kit",
                             Price = 1000,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("3e80f63e-6866-4a58-a7e7-8151b8c7c199")
                         },
@@ -245,11 +244,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("4679e631-8273-49cd-91a6-fae714ea9d73"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Videogame",
                             Price = 500,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e")
                         },
@@ -257,11 +257,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("b199f9b1-cf03-4990-876e-492df1cf69d1"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Playstation 5",
                             Price = 500,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("f1c3a402-5e08-4e13-a08f-4d9ab5062a9e")
                         },
@@ -269,11 +270,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("f741ceca-8eed-40a6-8706-3181886a2e23"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Android Tablet",
                             Price = 500,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("92c17ce6-92b8-4515-9fc3-e38fcc51d83e")
                         },
@@ -281,11 +283,12 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("f4411dd9-d96a-4104-9d33-30f7beb3ad05"),
                             AddedOn = new DateOnly(1, 1, 1),
+                            Barcode = 0,
                             Description = "Description Test",
                             Images = "[\"1.jpg\",\"2.jpg\"]",
                             Name = "Air Fryer",
                             Price = 500,
-                            Quantity = 0,
+                            Quantity = 1,
                             Sells = 0,
                             SubCategoryId = new Guid("3ac2239f-3d70-4da0-b81e-bda272847e7c")
                         });
@@ -304,6 +307,9 @@ namespace MyAPI.EShopApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsAccepted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsShipped")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Totalamount")
@@ -390,18 +396,22 @@ namespace MyAPI.EShopApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("hashedpassword")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("pass_salt")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("phonenumber")
+                    b.Property<int>("phonenumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("profileimage")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("username")
@@ -421,11 +431,28 @@ namespace MyAPI.EShopApp.Data.Migrations
                         {
                             Id = new Guid("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"),
                             email = "test@gmail.com",
+                            hashedpassword = "",
+                            pass_salt = "",
                             phonenumber = 123456789,
                             profileimage = "profile.jpg",
                             username = "testuser",
                             usertype = "user"
                         });
+                });
+
+            modelBuilder.Entity("ProductPurchaseLog", b =>
+                {
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("PurchaseLogsId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ProductsId", "PurchaseLogsId");
+
+                    b.HasIndex("PurchaseLogsId");
+
+                    b.ToTable("ProductPurchaseLog");
                 });
 
             modelBuilder.Entity("DiscountEventProduct", b =>
@@ -445,12 +472,8 @@ namespace MyAPI.EShopApp.Data.Migrations
 
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Product", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.PurchaseLog", null)
-                        .WithMany("Products")
-                        .HasForeignKey("PurchaseLogId");
-
                     b.HasOne("MyAPI.EShopApp.Data.Models.SubCategory", "SubCategory")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -480,12 +503,27 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Navigation("MainCategory");
                 });
 
+            modelBuilder.Entity("ProductPurchaseLog", b =>
+                {
+                    b.HasOne("MyAPI.EShopApp.Data.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyAPI.EShopApp.Data.Models.PurchaseLog", null)
+                        .WithMany()
+                        .HasForeignKey("PurchaseLogsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.MainCategory", b =>
                 {
                     b.Navigation("SubCategories");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.PurchaseLog", b =>
+            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
                 {
                     b.Navigation("Products");
                 });

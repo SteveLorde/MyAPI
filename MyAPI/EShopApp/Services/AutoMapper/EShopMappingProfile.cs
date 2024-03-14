@@ -12,7 +12,8 @@ public class EShopMappingProfile : Profile
         //MODEL TO DTO
         CreateMap<User, JWTRequestDTO>();
         CreateMap<Product,ProductDTO>();
-        CreateMap<DiscountEvent,DiscountEventDTO>();
+        CreateMap<DiscountEvent, DiscountEventDTO>();
+        CreateMap<SubCategory, SubCategoryDTO>();
         
         //DTO to MODEL
         CreateMap<DiscountEventDTO,DiscountEvent>();

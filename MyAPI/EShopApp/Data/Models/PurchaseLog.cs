@@ -12,4 +12,5 @@ public class PurchaseLog
     public decimal Extrafees { get; set; }
     public bool IsAccepted { get; set; }
     public decimal Totalamount { get; set; }
+    public bool IsShipped { get; set; }
 }

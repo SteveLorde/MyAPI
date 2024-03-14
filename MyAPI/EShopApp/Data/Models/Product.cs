@@ -12,7 +12,7 @@ public class Product
     public SubCategory SubCategory { get; set; }
     public int Price { get; set; }
     public int Barcode { get; set; }
-    public int Quantity { get; set; }
+    public int Quantity { get; set; } = 1;
     public DateOnly AddedOn { get; set; }
     public string[] Images { get; set; }
     public int Sells { get; set; }

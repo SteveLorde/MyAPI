@@ -43,6 +43,12 @@ class ProductsRepository : IProductsRepository
         return await _db.ParentCategories.Include(parentcat => parentcat.SubCategories).ToListAsync();
     }
 
+    public async Task<SubCategoryDTO> GetSubCategory(string subcategoryid)
+    {
+        return await _db.Categories.Include(subcat => subcat.Products).ProjectTo<SubCategoryDTO>(_mapper.ConfigurationProvider).FirstAsync(subcat => subcat.Id == Guid.Parse(subcategoryid));
+    }
+
+
     public async Task<List<SubCategory>> GetCategories(string maincategoryid)
     {
         return await _db.ParentCategories.Where(x => x.Id == Guid.Parse(maincategoryid) ).SelectMany(z => z.SubCategories).Include(a => a.MainCategory).ToListAsync();
