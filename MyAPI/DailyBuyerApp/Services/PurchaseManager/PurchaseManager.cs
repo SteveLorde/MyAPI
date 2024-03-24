@@ -30,6 +30,7 @@ class PurchaseManager : IPurchaseManager
         Purchase newpurchase = new Purchase();
         newpurchase = _mapper.Map<Purchase>(purchaseRequest);
         await CreateDataFolder(newpurchase.Id, purchaseRequest.Imagefile);
+        newpurchase.Imagename = purchaseRequest.Imagefile.FileName;
         await _db.Purchases.AddAsync(newpurchase);
         await _db.SaveChangesAsync();
         return true;
