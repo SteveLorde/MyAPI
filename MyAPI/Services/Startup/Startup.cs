@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyAPI.DailyBuyerApp.Data;
 using MyAPI.Data;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data;
@@ -34,11 +35,13 @@ public class Startup : IStartup
         forumdbservice.Database.Migrate();
         
         //EShopApp
-        var eshopscopedb = _serviceprovider.CreateScope();
-        var servicedb = eshopscopedb.ServiceProvider;
-        var eshopdbservice = servicedb.GetRequiredService<EShopDataContext>();
-        eshopdbservice.Database.Migrate();
+        var eshopdb = _serviceprovider.CreateScope().ServiceProvider.GetRequiredService<EShopDataContext>();
+        eshopdb.Database.Migrate();
         _eShopCustomSeeding.SeedDiscountsProducts();
+        
+        //DailyBuyerApp
+        var dailybuyerdb = _serviceprovider.CreateScope().ServiceProvider.GetRequiredService<DailyBuyerDataContext>();
+        dailybuyerdb.Database.Migrate();
     }
     
     

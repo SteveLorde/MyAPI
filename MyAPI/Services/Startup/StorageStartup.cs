@@ -1,5 +1,6 @@
 ﻿using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
+using MyAPI.ForumApp.Services.Repositories.Users;
 
 namespace MyAPI.Services.Startup;
 
@@ -31,6 +32,10 @@ public class StorageStartup : IStorageStartup
             Directory.CreateDirectory(forumappstoragefolder);
             Console.WriteLine("craated ForumApp Storage folder");
         }
+
+        var forumscope = _serviceprovider.CreateScope();
+        var forumuserrepo = forumscope.ServiceProvider.GetRequiredService<IUsersRepository>();
+        forumuserrepo.CreateUsersFolders();
         
         //Eshop App
         var scope1 = _serviceprovider.CreateScope();

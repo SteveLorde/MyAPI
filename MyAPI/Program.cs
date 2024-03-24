@@ -2,10 +2,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using MyAPI.DailyBuyerApp.Services;
 using MyAPI.EShopApp.Services;
 using MyAPI.ForumApp.Services;
 using MyAPI.Services;
-using MyAPI.TheDailyBuyerApp.Services;
 using IStartup = MyAPI.Services.Startup.IStartup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +75,6 @@ app.UseStaticFiles(new StaticFileOptions {
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
+app.Run(builder.Configuration["URL"]);
 
 

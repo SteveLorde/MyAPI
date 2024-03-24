@@ -12,4 +12,6 @@ public class User
     public string usertype { get; set; }
     public string email { get; set; }
     public string profileimage { get; set; }
+    public List<Thread> Threads { get; set; }
+    public List<Post> Posts { get; set; }
 }
