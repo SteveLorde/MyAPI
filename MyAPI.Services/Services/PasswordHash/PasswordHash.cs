@@ -1,6 +1,5 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using MyAPI.ForumApp.Services.Authentication.Model;
 
 namespace MyAPI.Services.PasswordHash;
 

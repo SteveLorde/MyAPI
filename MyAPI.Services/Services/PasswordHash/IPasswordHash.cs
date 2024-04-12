@@ -1,5 +1,4 @@
-﻿using MyAPI.ForumApp.Services.Authentication.Model;
-
+﻿
 namespace MyAPI.Services.PasswordHash;
 
 public interface IPasswordHash

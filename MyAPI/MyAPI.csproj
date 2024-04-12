@@ -24,23 +24,15 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="MimeKit" Version="4.3.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DailyBuyerApp\Data\Migrations\" />
-      <Folder Include="Data\Migrations\" />
-      <Folder Include="Data\Models\" />
-      <Folder Include="EShopApp\Data\Migrations\" />
       <Folder Include="obj\Debug\net8.0\refint\" />
       <Folder Include="obj\Debug\net8.0\ref\" />
-      <Folder Include="Storage\DailyBuyer\" />
+      <Folder Include="Storage\" />
     </ItemGroup>
     
     <ItemGroup>
@@ -72,9 +64,6 @@
         <None Include="obj\rider.project.restore.info" />
         <None Remove="obj\**" />
         <None Update="Storage\ForumApp\cb89bdb8-348a-4af4-b837-8caa71bd7fb0\profilepic.jpg">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Storage\ForumApp\Users\f36d69a4-9c09-4c08-9da4-a315d2093385\_aaeb9a04-b9c0-4e8e-87f4-c2afc68c07a6.jpg">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
@@ -125,6 +114,13 @@
     
     <ItemGroup>
       <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\MyAPI.DailyBuyerApp\MyAPI.DailyBuyerApp.csproj" />
+      <ProjectReference Include="..\MyAPI.EShopApp\MyAPI.EShopApp.csproj" />
+      <ProjectReference Include="..\MyAPI.ForumApp\MyAPI.ForumApp.csproj" />
+      <ProjectReference Include="..\MyAPI.Services\MyAPI.Services.csproj" />
     </ItemGroup>
 
 </Project>

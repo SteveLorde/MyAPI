@@ -2,11 +2,11 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using MyAPI.Data.DTOs;
-using MyAPI.ForumApp.Data.DTOs;
-using MyAPI.ForumApp.Data.Models;
-using MyAPI.ForumApp.Services.Authentication.Model;
+
 using MyAPI.Services.JWT.DTO;
 
 namespace MyAPI.Services.JWT;
@@ -19,7 +19,6 @@ class JWT : IJWT
     private readonly IWebHostEnvironment _webenv;
     private readonly IHttpContextAccessor _httpContextAccessor;
     
-
     public JWT(IConfiguration config, IHttpContextAccessor httpContextAccessor)
     {
         _config = config;
@@ -48,36 +47,4 @@ class JWT : IJWT
         var jwt = new JwtSecurityTokenHandler().WriteToken(tokendata);
         return jwt;
     }
-
-    //UNUSED
-    /*
-    public bool VerifyToken(string token)
-    {
-        try
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var secretkey = Encoding.UTF8.GetBytes(jwtseckey);
-
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(secretkey),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ClockSkew = TimeSpan.Zero // You may adjust the clock skew as needed
-            };
-
-            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
-
-            return true;
-
-        }
-        catch (Exception err)
-        {
-            throw err;
-        }
-    }
-    */
-    
-    
 }

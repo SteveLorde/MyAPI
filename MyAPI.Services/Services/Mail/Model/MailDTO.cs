@@ -1,6 +1,8 @@
-﻿namespace MyAPI.Services.Mail.Model;
+﻿using Microsoft.AspNetCore.Http;
 
-public class Mail
+namespace MyAPI.Services.Mail.Model;
+
+public class MailDTO
 {
     public string ToEmail { get; set; }
     public string Subject { get; set; }

@@ -1,4 +1,6 @@
-﻿using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 using MyAPI.ForumApp.Services.Repositories.Users;
 

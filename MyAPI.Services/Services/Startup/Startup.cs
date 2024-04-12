@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MyAPI.DailyBuyerApp.Data;
 using MyAPI.Data;
 using MyAPI.EShopApp.Data;
