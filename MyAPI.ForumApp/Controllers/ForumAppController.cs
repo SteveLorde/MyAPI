@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyAPI.Data;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.DTOs.Requests;

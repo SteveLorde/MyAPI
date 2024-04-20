@@ -35,7 +35,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.ToTable("DiscountEventProduct");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.DiscountEvent", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.DiscountEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.MainCategory", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.MainCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Product", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,7 +297,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.PurchaseLog", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.PurchaseLog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -328,7 +328,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.ToTable("PurchaseLogs");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.SubCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -392,7 +392,7 @@ namespace MyAPI.EShopApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.User", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -460,22 +460,22 @@ namespace MyAPI.EShopApp.Data.Migrations
 
             modelBuilder.Entity("DiscountEventProduct", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.DiscountEvent", null)
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.DiscountEvent", null)
                         .WithMany()
                         .HasForeignKey("DiscountEventsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyAPI.EShopApp.Data.Models.Product", null)
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.Product", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.Product", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.SubCategory", "SubCategory")
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.SubCategory", "SubCategory")
                         .WithMany("Products")
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -484,9 +484,9 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Navigation("SubCategory");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.PurchaseLog", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.PurchaseLog", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.User", "User")
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.User", "User")
                         .WithMany("PurchaseLogs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -495,9 +495,9 @@ namespace MyAPI.EShopApp.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.SubCategory", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.MainCategory", "MainCategory")
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.MainCategory", "MainCategory")
                         .WithMany("SubCategories")
                         .HasForeignKey("MainCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -508,30 +508,30 @@ namespace MyAPI.EShopApp.Data.Migrations
 
             modelBuilder.Entity("ProductPurchaseLog", b =>
                 {
-                    b.HasOne("MyAPI.EShopApp.Data.Models.Product", null)
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyAPI.EShopApp.Data.Models.PurchaseLog", null)
+                    b.HasOne("MyAPI.API.EShopApp.Data.Models.PurchaseLog", null)
                         .WithMany()
                         .HasForeignKey("PurchaseLogsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.MainCategory", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.MainCategory", b =>
                 {
                     b.Navigation("SubCategories");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.SubCategory", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("MyAPI.EShopApp.Data.Models.User", b =>
+            modelBuilder.Entity("MyAPI.API.EShopApp.Data.Models.User", b =>
                 {
                     b.Navigation("PurchaseLogs");
                 });

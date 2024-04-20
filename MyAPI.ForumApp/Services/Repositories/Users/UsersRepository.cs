@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.Models;
 

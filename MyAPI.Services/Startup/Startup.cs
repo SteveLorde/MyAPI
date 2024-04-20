@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MyAPI.DailyBuyerApp.Data;
-using MyAPI.Data;
-using MyAPI.EShopApp.Data;
-using MyAPI.EShopApp.Data;
-using MyAPI.EShopApp.Data.Seeding;
-using MyAPI.ForumApp.Data;
 
 namespace MyAPI.Services.Startup;
 

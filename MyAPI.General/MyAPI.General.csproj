@@ -4,17 +4,15 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>MyAPI.Packages</RootNamespace>
     </PropertyGroup>
-
+    
     <ItemGroup>
-      <Folder Include="Storage\DailyBuyer\" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
-
+    
     <ItemGroup>
-      <ProjectReference Include="..\MyAPI.Services\MyAPI.Services.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

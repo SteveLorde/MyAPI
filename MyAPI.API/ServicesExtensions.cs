@@ -1,5 +1,4 @@
-﻿using MyAPI.Data;
-using MyAPI.EShopApp.Data;
+﻿using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.Seeding;

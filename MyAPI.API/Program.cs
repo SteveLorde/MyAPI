@@ -2,7 +2,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
-using MyAPI.DailyBuyerApp.Services;
 using MyAPI.EShopApp.Services;
 using MyAPI.ForumApp.Services;
 using MyAPI.Services;
@@ -32,7 +31,6 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 builder.Services.AddServices();
 builder.Services.AddEShopServices();
 builder.Services.AddForumAppServices();
-builder.Services.AddDailyBuyerAppServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {

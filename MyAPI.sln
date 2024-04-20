@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI", "MyAPI\MyAPI.csproj", "{56F5307C-B9A7-4126-9946-F121A5A28EE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI.API", "MyAPI.API\MyAPI.API.csproj", "{56F5307C-B9A7-4126-9946-F121A5A28EE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumAppTest", "ForumAppTest\ForumAppTest.csproj", "{5502F25D-E114-4EB1-A08B-CD799ACB84AC}"
 EndProject
@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI.ForumApp", "MyAPI.For
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI.EShopApp", "MyAPI.EShopApp\MyAPI.EShopApp.csproj", "{33231419-5786-4F40-A9E3-5B71EB0D83DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI.DailyBuyerApp", "MyAPI.DailyBuyerApp\MyAPI.DailyBuyerApp.csproj", "{E943C40F-99E1-4FB1-81A1-7AAE15DCC255}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAPI.General", "MyAPI.General\MyAPI.General.csproj", "{A2CCCA7E-AB85-43A9-B5E5-439F2461C9BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,10 @@ Global
 		{33231419-5786-4F40-A9E3-5B71EB0D83DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33231419-5786-4F40-A9E3-5B71EB0D83DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33231419-5786-4F40-A9E3-5B71EB0D83DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E943C40F-99E1-4FB1-81A1-7AAE15DCC255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E943C40F-99E1-4FB1-81A1-7AAE15DCC255}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E943C40F-99E1-4FB1-81A1-7AAE15DCC255}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E943C40F-99E1-4FB1-81A1-7AAE15DCC255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2CCCA7E-AB85-43A9-B5E5-439F2461C9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2CCCA7E-AB85-43A9-B5E5-439F2461C9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2CCCA7E-AB85-43A9-B5E5-439F2461C9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2CCCA7E-AB85-43A9-B5E5-439F2461C9BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

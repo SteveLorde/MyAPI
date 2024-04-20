@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.DTOs;

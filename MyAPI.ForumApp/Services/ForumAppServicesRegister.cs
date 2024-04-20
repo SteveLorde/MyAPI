@@ -1,4 +1,5 @@
-﻿using MyAPI.ForumApp.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Services.Authentication;
 using MyAPI.ForumApp.Services.Repositories.Forum;
 using MyAPI.ForumApp.Services.Repositories.Threads;

@@ -11,7 +11,7 @@ using MyAPI.Services.JWT.DTO;
 
 namespace MyAPI.Services.JWT;
 
-class JWT : IJWT
+public class JWT : IJWT
 {
     private IConfiguration _config;
 

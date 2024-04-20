@@ -14,6 +14,7 @@
         <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute> 
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <RootNamespace>MyAPI</RootNamespace>
     </PropertyGroup>
 
 
@@ -23,7 +24,6 @@
         <PackageReference Include="MailKit" Version="4.3.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
         <PackageReference Include="MimeKit" Version="4.3.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <PackageReference Include="xunit.abstractions" Version="2.0.3" />
@@ -117,10 +117,8 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\MyAPI.DailyBuyerApp\MyAPI.DailyBuyerApp.csproj" />
       <ProjectReference Include="..\MyAPI.EShopApp\MyAPI.EShopApp.csproj" />
       <ProjectReference Include="..\MyAPI.ForumApp\MyAPI.ForumApp.csproj" />
-      <ProjectReference Include="..\MyAPI.Services\MyAPI.Services.csproj" />
     </ItemGroup>
 
 </Project>

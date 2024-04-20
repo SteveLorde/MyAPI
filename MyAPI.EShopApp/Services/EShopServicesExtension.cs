@@ -1,4 +1,5 @@
-﻿using MyAPI.EShopApp.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.Seeding;
 using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;

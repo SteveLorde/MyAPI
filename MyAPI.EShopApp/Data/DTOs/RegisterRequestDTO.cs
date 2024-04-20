@@ -1,4 +1,6 @@
-﻿namespace MyAPI.EShopApp.Data.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace MyAPI.EShopApp.Data.DTOs;
 
 public class RegisterRequestDTO
 {

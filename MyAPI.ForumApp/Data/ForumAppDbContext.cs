@@ -1,5 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MyAPI.ForumApp.Data.DataSeed;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Authentication.Model;

@@ -1,9 +1,10 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using MyAPI.Packages.Models;
 
 namespace MyAPI.Services.PasswordHash;
 
-class PasswordHash : IPasswordHash
+public class PasswordHash : IPasswordHash
 {
     public string CreateHashedPassword(string password)
     {
@@ -11,8 +12,8 @@ class PasswordHash : IPasswordHash
         string hashedpassword = GenerateHashedPassword(password, salt);
         Hash hash = new Hash()
         {
-            hash = hashedpassword,
-            salt = salt
+            HashedPassword = hashedpassword,
+            Salt = salt
         };
         //create a string of pattern [SALT.HASHEDPASSWORD]
         string hashedpass = salt + "." + hashedpassword;

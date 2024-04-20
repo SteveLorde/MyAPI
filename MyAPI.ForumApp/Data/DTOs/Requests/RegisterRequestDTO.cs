@@ -1,4 +1,6 @@
-﻿namespace MyAPI.ForumApp.Data.DTOs.Requests;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace MyAPI.ForumApp.Data.DTOs.Requests;
 
 public class RegisterRequestDTO
 {

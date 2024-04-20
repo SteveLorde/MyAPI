@@ -1,4 +1,5 @@
-﻿using MyAPI.EShopApp.Data.Models;
+﻿using Microsoft.AspNetCore.Http;
+using MyAPI.EShopApp.Data.Models;
 
 namespace MyAPI.EShopApp.Data.DTOs;
 

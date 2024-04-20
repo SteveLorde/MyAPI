@@ -20,7 +20,7 @@ namespace MyAPI.ForumApp.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Category", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Post", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Post", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.SubCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -202,7 +202,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Thread", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Thread", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,7 +262,7 @@ namespace MyAPI.ForumApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.User", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -318,15 +318,15 @@ namespace MyAPI.ForumApp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Post", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Post", b =>
                 {
-                    b.HasOne("MyAPI.ForumApp.Data.Models.Thread", "thread")
+                    b.HasOne("MyAPI.API.ForumApp.Data.Models.Thread", "thread")
                         .WithMany("posts")
                         .HasForeignKey("ThreadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyAPI.ForumApp.Data.Models.User", "userposter")
+                    b.HasOne("MyAPI.API.ForumApp.Data.Models.User", "userposter")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -337,9 +337,9 @@ namespace MyAPI.ForumApp.Data.Migrations
                     b.Navigation("userposter");
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.SubCategory", b =>
                 {
-                    b.HasOne("MyAPI.ForumApp.Data.Models.Category", "category")
+                    b.HasOne("MyAPI.API.ForumApp.Data.Models.Category", "category")
                         .WithMany("subcategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,15 +348,15 @@ namespace MyAPI.ForumApp.Data.Migrations
                     b.Navigation("category");
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Thread", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Thread", b =>
                 {
-                    b.HasOne("MyAPI.ForumApp.Data.Models.SubCategory", "subcategory")
+                    b.HasOne("MyAPI.API.ForumApp.Data.Models.SubCategory", "subcategory")
                         .WithMany("threads")
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyAPI.ForumApp.Data.Models.User", "userowner")
+                    b.HasOne("MyAPI.API.ForumApp.Data.Models.User", "userowner")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -367,17 +367,17 @@ namespace MyAPI.ForumApp.Data.Migrations
                     b.Navigation("userowner");
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Category", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Category", b =>
                 {
                     b.Navigation("subcategories");
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.SubCategory", b =>
                 {
                     b.Navigation("threads");
                 });
 
-            modelBuilder.Entity("MyAPI.ForumApp.Data.Models.Thread", b =>
+            modelBuilder.Entity("MyAPI.API.ForumApp.Data.Models.Thread", b =>
                 {
                     b.Navigation("posts");
                 });

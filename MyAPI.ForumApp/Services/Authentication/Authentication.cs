@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using MyAPI.Data;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.DTOs.Requests;
