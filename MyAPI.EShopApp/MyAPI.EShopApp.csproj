@@ -10,4 +10,8 @@
       <ProjectReference Include="..\MyAPI.Services\MyAPI.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Data\DTOs\Responses\" />
+    </ItemGroup>
+
 </Project>

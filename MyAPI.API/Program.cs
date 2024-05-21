@@ -2,7 +2,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using MyAPI.EShopApp;
 using MyAPI.EShopApp.Services;
+using MyAPI.ForumApp;
 using MyAPI.ForumApp.Services;
 using MyAPI.Services;
 using IStartup = MyAPI.Services.Startup.IStartup;
@@ -47,11 +49,12 @@ builder.Services.AddCors(opt =>
 */
 
 var app = builder.Build();
-
-var servicescope = app.Services.CreateScope();
-var services = servicescope.ServiceProvider;
-var startupservice = services.GetRequiredService<IStartup>();
+var startupservice = app.Services.CreateScope().ServiceProvider.GetRequiredService<IStartup>();
+var forumAppStartup = app.Services.CreateScope().ServiceProvider.GetRequiredService<ForumAppStartup>();
+var eshopAppStartup = app.Services.CreateScope().ServiceProvider.GetRequiredService<EShopAppStartup>();
 startupservice.ExecuteServices();
+forumAppStartup.ExecuteServices();
+eshopAppStartup.ExecuteServices();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

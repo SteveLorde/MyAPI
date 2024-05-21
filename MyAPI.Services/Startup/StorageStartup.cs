@@ -11,7 +11,7 @@ public class StorageStartup : IStorageStartup
     public StorageStartup(IServiceProvider serviceProvider, IWebHostEnvironment webenv)
     {
         _serviceprovider = serviceProvider;
-        _webenv = webenv;
+
     }
     
     public void CreateFolders()
@@ -23,31 +23,6 @@ public class StorageStartup : IStorageStartup
             Directory.CreateDirectory(storagefolder);
             Console.WriteLine("craated general Storage folder");
         }
-        
-        //Forum App
-        var forumappstoragefolder = Path.Combine(_webenv.ContentRootPath, "Storage", "ForumApp");
-        if (!Directory.Exists(forumappstoragefolder))
-        {
-            Directory.CreateDirectory(forumappstoragefolder);
-            Console.WriteLine("craated ForumApp Storage folder");
-        }
-
-        var forumscope = _serviceprovider.CreateScope();
-        var forumuserrepo = forumscope.ServiceProvider.GetRequiredService<IUsersRepository>();
-        forumuserrepo.CreateUsersFolders();
-        
-        //Eshop App
-        var scope1 = _serviceprovider.CreateScope();
-        var servicescoper1 = scope1.ServiceProvider;
-        var newsservice = servicescoper1.GetRequiredService<IDiscountEventsRepository>();
-        newsservice.CreateEventsFolders();
-        
-        var scope2 = _serviceprovider.CreateScope();
-        var servicescoper2 = scope2.ServiceProvider;
-        var productservice = servicescoper2.GetRequiredService<IProductsRepository>();
-        productservice.CreateAssetsFolders();
-        
-        
     }
     
     
