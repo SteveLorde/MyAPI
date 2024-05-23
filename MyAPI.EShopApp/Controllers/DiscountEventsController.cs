@@ -3,7 +3,7 @@ using MyAPI.EShopApp.Data.DTOs;
 using MyAPI.EShopApp.Data.Models;
 using MyAPI.EShopApp.Services.Repositories.DiscountEventsRepository;
 
-namespace MyAPI.Controllers.EShopApp;
+namespace MyAPI.EShopApp.Controllers;
 
 [ApiController]
 [Route("eshop/events")]

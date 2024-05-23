@@ -1,4 +1,5 @@
 ﻿using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Data.DTOs.Requests;
 using MyAPI.EShopApp.Data.Models;
 
 namespace MyAPI.EShopApp.Services.Authentication;

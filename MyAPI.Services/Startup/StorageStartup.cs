@@ -11,7 +11,7 @@ public class StorageStartup : IStorageStartup
     public StorageStartup(IServiceProvider serviceProvider, IWebHostEnvironment webenv)
     {
         _serviceprovider = serviceProvider;
-
+        _webenv = webenv;
     }
     
     public void CreateFolders()

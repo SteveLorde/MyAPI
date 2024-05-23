@@ -21,7 +21,7 @@ public class AuthenticationTest
     public async void Login()
     {
         LoginRequestDTO loginreq = new LoginRequestDTO { username = "testuser1", password = "1234" };
-        var response = await  _httpClient.PostAsJsonAsync("http://localhost:5010/ForumApp/authentication/login", loginreq).Result.Content.ReadAsStringAsync();
+        var response = await  _httpClient.PostAsJsonAsync("http://localhost:5010/ForumApp/authentication/login",loginreq).Result.Content.ReadAsStringAsync();
         _testOutputHelper.WriteLine(response);
     }
 
@@ -29,9 +29,7 @@ public class AuthenticationTest
     public async void Register()
     {
         RegisterRequestDTO registerreq = new RegisterRequestDTO {email = "a@gmail.com" ,password = "aaa", username = "aaa"};
-        string jsondata = JsonConvert.SerializeObject(registerreq);
-        var httpcontent = new StringContent(jsondata, System.Text.Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync("http://localhost:5010/ForumApp/authentication/register", httpcontent).Result.Content.ReadAsStringAsync();
+        var response = await _httpClient.PostAsJsonAsync("http://localhost:5010/ForumApp/authentication/register",registerreq).Result.Content.ReadAsStringAsync();
         _testOutputHelper.WriteLine(response);
     }
     

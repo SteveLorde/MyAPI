@@ -2,14 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyAPI.EShopApp.Data.DTOs;
-using MyAPI.EShopApp.Data.Models;
+using MyAPI.EShopApp.Data.DTOs.Requests;
 using MyAPI.EShopApp.Services.Authentication;
-using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 
-namespace MyAPI.Controllers.EShopApp;
+namespace MyAPI.EShopApp.Controllers;
 
 [ApiController]
-[Route("eshop/warehouse")]
+[Route("eshop/authentication")]
 public class AuthenticationController : Controller
 {
     private readonly IAuthService _authService;

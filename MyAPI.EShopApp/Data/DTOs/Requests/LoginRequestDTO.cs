@@ -1,4 +1,4 @@
-﻿namespace MyAPI.EShopApp.Data.DTOs;
+﻿namespace MyAPI.EShopApp.Data.DTOs.Requests;
 
 public class LoginRequestDTO
 {

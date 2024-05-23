@@ -39,6 +39,11 @@ class ProductsRepository : IProductsRepository
         return queriedproduct;
     }
 
+    public async Task<List<ProductDTO>> SearchProduct(string productName)
+    {
+        return await _db.Products.Where(p => p.Name.Contains(productName)).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToListAsync();
+    }
+
     public async Task<List<MainCategory>> GetParentCategories()
     {
         return await _db.ParentCategories.Include(parentcat => parentcat.SubCategories).ToListAsync();

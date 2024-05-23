@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using MyAPI.EShopApp.Data;
 using MyAPI.EShopApp.Data.DTOs;
+using MyAPI.EShopApp.Data.DTOs.Requests;
 using MyAPI.EShopApp.Data.Models;
 using MyAPI.Services.JWT;
 using MyAPI.Services.JWT.DTO;

@@ -4,7 +4,7 @@ using MyAPI.EShopApp.Data.DTOs;
 using MyAPI.EShopApp.Services.Repositories.ProductsRepository;
 using MyAPI.EShopApp.Services.Shopping;
 
-namespace MyAPI.Controllers.EShopApp;
+namespace MyAPI.EShopApp.Controllers;
 
 
 [ApiController]

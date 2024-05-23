@@ -3,7 +3,7 @@ using MyAPI.EShopApp.Data.DTOs;
 using MyAPI.EShopApp.Data.Models;
 using MyAPI.Services.JWT.DTO;
 
-namespace MyAPI.Services.AutoMapper;
+namespace MyAPI.EShopApp.Services.AutoMapper;
 
 public class EShopMappingProfile : Profile
 {

@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MyAPI.ForumApp.Data;
-using MyAPI.ForumApp.Data.DTOs;
 using MyAPI.ForumApp.Data.DTOs.Requests;
 using MyAPI.ForumApp.Data.DTOs.Responses;
 using MyAPI.ForumApp.Data.Models;
 using MyAPI.ForumApp.Services.Repositories.Forum;
 using MyAPI.ForumApp.Services.Repositories.Threads;
-using MyAPI.Services.Authentication;
 using IAuthentication = MyAPI.ForumApp.Services.Authentication.IAuthentication;
-using Thread = MyAPI.ForumApp.Data.Models.Thread;
 
-namespace MyAPI.Controllers.ForumApp;
+namespace MyAPI.ForumApp.Controllers;
 
 
 [ApiController]

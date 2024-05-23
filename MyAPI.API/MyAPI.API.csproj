@@ -14,17 +14,13 @@
         <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute> 
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-        <RootNamespace>MyAPI</RootNamespace>
+        <RootNamespace>MyAPI.API</RootNamespace>
+        <RazorLangVersion>8.0</RazorLangVersion>
     </PropertyGroup>
 
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="12.0.1" />
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-        <PackageReference Include="MailKit" Version="4.3.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-        <PackageReference Include="MimeKit" Version="4.3.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     </ItemGroup>
@@ -88,10 +84,6 @@
       <Compile Include="obj\Debug\net8.0\MyAPI.GlobalUsings.g.cs" />
       <Compile Include="obj\Debug\net8.0\MyAPI.MvcApplicationPartsAssemblyInfo.cs" />
       <Compile Remove="obj\**" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <EditorConfigFiles Include="obj\Debug\net8.0\MyAPI.GeneratedMSBuildEditorConfig.editorconfig" />
     </ItemGroup>
     
     <ItemGroup>

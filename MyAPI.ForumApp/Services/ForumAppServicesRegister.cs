@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MyAPI.ForumApp.Data;
 using MyAPI.ForumApp.Services.Authentication;
+using MyAPI.ForumApp.Services.AutoMapper;
 using MyAPI.ForumApp.Services.Repositories.Forum;
 using MyAPI.ForumApp.Services.Repositories.Threads;
 using MyAPI.ForumApp.Services.Repositories.Users;
@@ -14,6 +15,7 @@ public static class ForumAppServicesRegister
     {
         services.AddAutoMapper(typeof(ForumAppProfile));
         services.AddDbContext<ForumAppDbContext>();
+        services.AddScoped<ForumAppStartup>();
         services.AddScoped<IForumService,ForumService>();
         services.AddScoped<IThreadsService,ThreadsService>();
         services.AddScoped<IAuthentication,ForumApp.Services.Authentication.Authentication>();
