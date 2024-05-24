@@ -31,7 +31,16 @@ public class WarehouseController : Controller
         else
         {
             var pagedProducts = products.Skip( (pageNumber - 1) * 20).Take(20).ToList();
-            int totalPages = products.Count / 20;
+            decimal totalPagesDecimal = (decimal)products.Count / (decimal)20;
+            int totalPages = 0;
+            if (totalPagesDecimal % 1 == 0)
+            {
+                totalPages = (int)totalPagesDecimal;
+            }
+            else
+            {
+                totalPages = (int)totalPagesDecimal + 1;
+            }
             paginatedProducts.Products = pagedProducts;
             paginatedProducts.TotalPages = totalPages;
             return paginatedProducts;
@@ -43,7 +52,16 @@ public class WarehouseController : Controller
     {
         List<ProductDTO> searchedProducts = await _productsrepo.SearchProduct(productName);
         var pagedProducts = searchedProducts.Skip( (pageNumber - 1) * 20).Take(20).ToList();
-        int totalPages = searchedProducts.Count / 20;
+        decimal totalPagesDecimal = (decimal)searchedProducts.Count / (decimal)20;
+        int totalPages = 0;
+        if (totalPagesDecimal % 1 == 0)
+        {
+            totalPages = (int)totalPagesDecimal;
+        }
+        else
+        {
+            totalPages = (int)totalPagesDecimal + 1;
+        }
         PaginatedProductsResponseDTO paginatedProducts = new PaginatedProductsResponseDTO() {Products = pagedProducts, TotalPages = totalPages};
         return paginatedProducts;
     }
@@ -77,7 +95,16 @@ public class WarehouseController : Controller
     {
         List<ProductDTO> categoryProducts = await _productsrepo.GetProductsByCategory(categoryid);
         var pagedProducts = categoryProducts.Skip( (pageNumber - 1) * 20).Take(20).ToList();
-        int totalPages = categoryProducts.Count / 20;
+        decimal totalPagesDecimal = (decimal)categoryProducts.Count / (decimal)20;
+        int totalPages = 0;
+        if (totalPagesDecimal % 1 == 0)
+        {
+            totalPages = (int)totalPagesDecimal;
+        }
+        else
+        {
+            totalPages = (int)totalPagesDecimal + 1;
+        }
         PaginatedProductsResponseDTO paginatedProducts = new PaginatedProductsResponseDTO() {Products = pagedProducts, TotalPages = totalPages};
         return paginatedProducts;
     }
