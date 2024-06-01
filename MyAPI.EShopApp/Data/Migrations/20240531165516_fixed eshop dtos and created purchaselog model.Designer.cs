@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyAPI.EShopApp.Data;
 
@@ -10,9 +11,11 @@ using MyAPI.EShopApp.Data;
 namespace MyAPI.EShopApp.Data.Migrations
 {
     [DbContext(typeof(EShopDataContext))]
-    partial class EShopDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240531165516_fixed eshop dtos and created purchaselog model")]
+    partial class fixedeshopdtosandcreatedpurchaselogmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -351,7 +354,7 @@ namespace MyAPI.EShopApp.Data.Migrations
 
                     b.HasIndex("PurchaseLogId");
 
-                    b.ToTable("PurchaseLogProducts");
+                    b.ToTable("PurchaseLogProduct");
                 });
 
             modelBuilder.Entity("MyAPI.EShopApp.Data.Models.SubCategory", b =>
@@ -424,34 +427,30 @@ namespace MyAPI.EShopApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("hashedpassword")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("HashedPassword")
+                    b.Property<string>("pass_salt")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PassSalt")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PhoneNumber")
+                    b.Property<int>("phonenumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ProfileImage")
+                    b.Property<string>("profileimage")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("username")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserType")
+                    b.Property<string>("usertype")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -463,14 +462,13 @@ namespace MyAPI.EShopApp.Data.Migrations
                         new
                         {
                             Id = new Guid("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"),
-                            Address = "Ahmed El Zomor,Nasr City",
-                            Email = "test@gmail.com",
-                            HashedPassword = "",
-                            PassSalt = "",
-                            PhoneNumber = 123456789,
-                            ProfileImage = "profile.jpg",
-                            UserName = "testuser",
-                            UserType = "user"
+                            email = "test@gmail.com",
+                            hashedpassword = "",
+                            pass_salt = "",
+                            phonenumber = 123456789,
+                            profileimage = "profile.jpg",
+                            username = "testuser",
+                            usertype = "user"
                         });
                 });
 

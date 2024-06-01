@@ -9,10 +9,10 @@ public class ProductDTO
     public string Name { get; set; }
     public string Description { get; set; }
     public Guid SubCategoryId { get; set; }
-    public SubCategory SubCategory { get; set; }
+    public SubCategoryDTO SubCategory { get; set; }
     public int Price { get; set; }
     public int Quantity { get; set; }
     public string[] Images { get; set; }
     public IFormFile[] Imagefiles { get; set; }
-    public List<DiscountEvent> DiscountEvents { get; set; }
+    public List<DiscountEventDTO> DiscountEvents { get; set; }
 }

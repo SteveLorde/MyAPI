@@ -3,8 +3,9 @@
 public class UserDTO
 {
     public Guid Id { get; set; }
-    public string username { get; set; }
-    public int phonenumber { get; set; }
-    public string email { get; set; }
-    public string profileimage { get; set; }
+    public string Address { get; set; }
+    public string UserName { get; set; }
+    public int PhoneNumber { get; set; }
+    public string Email { get; set; }
+    public string ProfileImage { get; set; }
 }

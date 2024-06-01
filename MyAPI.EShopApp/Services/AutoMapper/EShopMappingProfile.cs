@@ -14,10 +14,13 @@ public class EShopMappingProfile : Profile
         CreateMap<Product,ProductDTO>();
         CreateMap<DiscountEvent, DiscountEventDTO>();
         CreateMap<SubCategory, SubCategoryDTO>();
+        CreateMap<PurchaseLog, PurchaseLogDTO>();
+        CreateMap<PurchaseLogProduct, PurchaseLogProductDTO>();
         
         //DTO to MODEL
         CreateMap<DiscountEventDTO,DiscountEvent>();
         CreateMap<ProductDTO,Product>();
         CreateMap<PurchaseLogDTO,PurchaseLog>();
+        CreateMap<PurchaseLogProductDTO, PurchaseLogProduct>();
     }
 }

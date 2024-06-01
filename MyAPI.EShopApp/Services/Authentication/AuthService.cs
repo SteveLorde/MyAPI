@@ -31,17 +31,17 @@ class AuthService : IAuthService
     {
         string token = "token x";
         //1st, check username in database
-        bool checkuser = await _db.Users.AnyAsync(x => x.username == loginreq.username);
+        bool checkuser = await _db.Users.AnyAsync(x => x.UserName == loginreq.username);
         if (!checkuser)
         {
             return "user not found";
         }
         else
         {
-            var loginuser = await _db.Users.FirstAsync(x => x.username == loginreq.username);
+            var loginuser = await _db.Users.FirstAsync(x => x.UserName == loginreq.username);
             JWTRequestDTO userjwtreq = _mapper.Map<JWTRequestDTO>(loginuser);
             //2nd verify password
-            bool checkpassword = await VerifyPassword(loginreq.password, loginuser.hashedpassword) ;
+            bool checkpassword = await VerifyPassword(loginreq.password, loginuser.HashedPassword) ;
             if (checkpassword)
             {
                 token  = _jwtservice.CreateToken(userjwtreq);

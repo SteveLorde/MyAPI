@@ -68,7 +68,7 @@ public class EShopDataContext : DbContext
         
         modelBuilder.Entity<User>().HasData(
             new User
-            { Id = Guid.Parse("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"), username = "testuser", pass_salt = "", hashedpassword = "", usertype = "user", phonenumber = 123456789, email = "test@gmail.com",profileimage = "profile.jpg"}
+            { Id = Guid.Parse("c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"), Address = "Ahmed El Zomor,Nasr City",UserName = "testuser", PassSalt = "", HashedPassword = "", UserType = "user", PhoneNumber = 123456789, Email = "test@gmail.com",ProfileImage = "profile.jpg"}
         );
         
     }
@@ -79,6 +79,7 @@ public class EShopDataContext : DbContext
     //USING AUTOMATIC GENERATED JOINT TABLE through (m-to-m relation) property in classes
     //public DbSet<ProductDiscount> ProductDiscounts  { get; set;}
     public DbSet<PurchaseLog> PurchaseLogs { get; set; }
+    public DbSet<PurchaseLogProduct> PurchaseLogProducts { get; set; }
     public DbSet<MainCategory> ParentCategories { get; set; }
     public DbSet<SubCategory> Categories { get; set; }
 }
